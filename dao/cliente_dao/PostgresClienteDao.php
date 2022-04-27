@@ -10,21 +10,34 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
   public function insere($cliente) {
 
     $query = "INSERT INTO " . $this->table_name . "
-    (CLICOD,
-    CLINOME, 
-    CLILOGIN,
-    CLISENHA,
-    CLIRUA,
-    CLINUMERO,
-    CLICOMPLEMENTO,
-    CLIBAIRRO,
-    CLICEP,
-    CLICIDADE,
-    CLIESTADO,
-    CLITELEFONE,
-    CLIEMAIL,
-    CLICARTAOCREDITO)
-    VALUES (:codigo, :nome, :login, :senha, :rua, :numero, :complemento, :bairro, :cep, :cidade, :estado, :telefone, :email, :cartaocredito)";
+      (CLICOD,
+      CLINOME, 
+      CLILOGIN,
+      CLISENHA,
+      CLIRUA,
+      CLINUMERO,
+      CLICOMPLEMENTO,
+      CLIBAIRRO,
+      CLICEP,
+      CLICIDADE,
+      CLIESTADO,
+      CLITELEFONE,
+      CLIEMAIL,
+      CLICARTAOCREDITO)
+      VALUES (:codigo, 
+        :nome, 
+        :login,
+        :senha, 
+        :rua, 
+        :numero, 
+        :complemento, 
+        :bairro, 
+        :cep, 
+        :cidade, 
+        :estado,
+        :telefone, 
+        :email, 
+        :cartaocredito)";
 
     $stmt = $this->conn->prepare($query);
 
@@ -147,7 +160,20 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
   
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if($row) {
-        $cliente = new Cliente($row['CLICOD'], $row['CLINOME'], $row['CLILOGIN'], $row['CLISENHA'], $row['CLIRUA'],$row['CLINUMERO'], $row['CLICOMPLEMENTO'], $row['CLIBAIRRO'], $row['CLICEP'], $row['CLICIDADE'], $row['CLIESTADO'], $row['CLITELEFONE'], $row['CLIEMAIL'], $row['CLICARTAOCREDITO']);
+        $cliente = new Cliente($row['CLICOD'], 
+        $row['CLINOME'], 
+        $row['CLILOGIN'], 
+        $row['CLISENHA'], 
+        $row['CLIRUA'],
+        $row['CLINUMERO'], 
+        $row['CLICOMPLEMENTO'], 
+        $row['CLIBAIRRO'], 
+        $row['CLICEP'], 
+        $row['CLICIDADE'], 
+        $row['CLIESTADO'], 
+        $row['CLITELEFONE'], 
+        $row['CLIEMAIL'], 
+        $row['CLICARTAOCREDITO']);
     } 
   
     return $cliente;
@@ -220,7 +246,20 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
   
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $cliente[] = new Cliente($codigo, $nome, $login, $senha, $rua, $numero, $complemento, $bairro, $cep, $cidade, $estado, $telefone, $email, $cartaocredito);
+        $cliente[] = new Cliente($codigo, 
+          $nome, 
+          $login, 
+          $senha, 
+          $rua, 
+          $numero, 
+          $complemento, 
+          $bairro, 
+          $cep, 
+          $cidade,
+          $estado, 
+          $telefone, 
+          $email, 
+          $cartaocredito);
     }
 
     return $clientes;
@@ -271,7 +310,20 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $cliente[] = new Cliente($codigo, $nome, $login, $senha, $rua, $numero, $complemento, $bairro, $cep, $cidade, $estado, $telefone, $email, $cartaocredito);
+        $cliente[] = new Cliente($codigo, 
+          $nome, 
+          $login, 
+          $senha, 
+          $rua, 
+          $numero, 
+          $complemento, 
+          $bairro, 
+          $cep, 
+          $cidade,
+          $estado, 
+          $telefone, 
+          $email, 
+          $cartaocredito);
     }
     
     return $cliente;

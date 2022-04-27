@@ -29,9 +29,19 @@ class PostgresDaofactory extends DaoFactory {
     }
 
     public function getClienteDao() {
-
         return new PostgresClienteDao($this->getConnection());
-
     }
+
+    public function getFornecedorDao() {
+        return new PostgresFornecedorDao($this->getConnection());
+    }
+
+    public function getProdutoDao() {
+        return new PostgresProdutoDao($this->getConnection());
+    }
+
+    public function getPedidoDao() {
+      return new PostgresPedidoDao($this->getConnection());
+  }
 }
 ?>
