@@ -10,5 +10,7 @@ abstract class DaoFactory {
     public abstract function getProdutoDao();
 
     public abstract function getPedidoDao();
+
+    public abstract function getItemPedidoDao();
 }
 ?>

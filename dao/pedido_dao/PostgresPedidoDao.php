@@ -36,14 +36,14 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
 
   }
 
-  public function removePorCodigo($codigo) {
+  public function removePorNumeroPedido($numero) {
     $query = "DELETE FROM " . $this->table_name . 
-    " WHERE PROCOD = :codigo";
+    " WHERE PEDNUMERO = :numero";
 
     $stmt = $this->conn->prepare($query);
 
     // bind parameters
-    $stmt->bindParam(':codigo', $codigo);
+    $stmt->bindParam(':numero', $numero);
 
     // execute the query
     if($stmt->execute()){
@@ -55,7 +55,7 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
 
   public function removePorPedido($pedido)
   {
-    return $this->removePorCodigo($pedido->getNumero()); 
+    return $this->removePorNumeroPedido($pedido->getNumero()); 
   }
 
   public function altera($pedido) {
@@ -83,7 +83,7 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
     return false;
   }
 
-  public function buscaPorCodigo($codigo) {
+  public function buscaPorNumeroDePedido($numero) {
       
     $pedido = null;
 
@@ -95,12 +95,12 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
       FROM 
         " . $this->table_name . "
       WHERE
-        FORCOD = ?
+        PEDNUMERO = ?
       LIMIT
         1 OFFSET 0";
   
     $stmt = $this->conn->prepare( $query );
-    $stmt->bindParam(1, $codigo);
+    $stmt->bindParam(1, $numero);
     $stmt->execute();
   
     $row = $stmt->fetch(PDO::FETCH_ASSOC);

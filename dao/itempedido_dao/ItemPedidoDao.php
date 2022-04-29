@@ -1,10 +1,10 @@
 <?php
 interface ItemPedidoDao {
 
-    public function insere($pedido);
-    public function removePorCodigo($codigo);
-    public function altera($pedido);
-    public function buscaPorCodigo($codigo);
+    public function insere($itemPedido);
+    public function removePorPedido($pedido);
+    public function altera($itemPedido);
+    public function buscaPorNumeroPedido($pedido, $codigo);
     public function buscaTodos();
     public function contaTodos();
 }

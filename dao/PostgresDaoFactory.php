@@ -1,7 +1,7 @@
 <?php
 
 include_once('DaoFactory.php');
-include_once('PostgresUsuarioDao.php');
+include_once('FachadaPostgressDao.php');
 
 class PostgresDaofactory extends DaoFactory {
 
@@ -42,6 +42,10 @@ class PostgresDaofactory extends DaoFactory {
 
     public function getPedidoDao() {
       return new PostgresPedidoDao($this->getConnection());
-  }
+    }
+
+    public function getItemPedidoDao() {
+      return new PostgresItemPedidoDao($this->getConnection());
+    }
 }
 ?>
