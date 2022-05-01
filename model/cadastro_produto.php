@@ -17,24 +17,27 @@
         <div class="col-md-4">
             <div class="panel panel-default panel-login">
                 <div class="panel-heading text-center">
-                    Cadastro Fornecedor
+                    Cadastro Usuario
                 </div>
                 <div class="panel-body">
                     <form action="autentica.php" method="POST">
                         <div class="input-group">
-                            <input type="text" name="fornecedor" placeholder="Fornecedor" class="form-control">
+                            <input type="text" name="nome" placeholder="Nome" class="form-control">
                         </div>
                         <br>
                         <div class="input-group">
-                            <input type="text" name="descrição" placeholder="Descrição" class="form-control">
+                            <input type="text" name="descricao" placeholder="Descricao" class="form-control">
                         </div>
                         <br>
                         <div class="input-group">
-                            <input type="text" name="email" placeholder="Email " class="form-control">
+                            <input type="text" name="fornecedor" placeholder="Fornecedor " class="form-control">
                         </div>
                         <br>
                         <div class="input-group">
-                            <input type="text" name="telefone" placeholder="Telefone " class="form-control">
+                            <input type="text" name="quantidade" placeholder="Quantidade" class="form-control">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" name="preco" placeholder="Preço" class="form-control">
                         </div>
                         <br>
                         <div class="text-center">

@@ -26,31 +26,23 @@
                         </div>
                         <br>
                         <div class="input-group">
-                            <input type="text" name="telefone" placeholder="Telefone" class="form-control">
+                            <input type="text" name="descricao" placeholder="Descrição" class="form-control">
                         </div>
                         <br>
                         <div class="input-group">
-                            <input type="text" name="email" placeholder="Email " class="form-control">
+                            <input type="text" name="rua" placeholder="Rua" class="form-control">
                         </div>
                         <br>
                         <div class="input-group">
-                            <input type="text" name="cartão de credito" placeholder="Cartão de credito " class="form-control">
+                            <input type="text" name="numero" placeholder="Número" class="form-control">
                         </div>
                         <br>
                         <div class="input-group">
-                            <input type="text" name="rua" placeholder="Rua " class="form-control">
+                            <input type="text" name="complemento" placeholder="Complemento" class="form-control">
                         </div>
                         <br>
                         <div class="input-group">
-                            <input type="text" name="numero" placeholder="Numero " class="form-control">
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <input type="text" name="complemento" placeholder="Complemento " class="form-control">
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <input type="text" name="bairro" placeholder="Bairro " class="form-control">
+                            <input type="text" name="bairro" placeholder="Bairro" class="form-control">
                         </div>
                         <br>
                         <div class="input-group">
@@ -58,17 +50,22 @@
                         </div>
                         <br>
                         <div class="input-group">
-                            <input type="text" name="cidade" placeholder="Cidade " class="form-control">
+                            <input type="text" name="cidade" placeholder="Cidade" class="form-control">
                         </div>
                         <br>
                         <div class="input-group">
-                            <input type="text" name="estado" placeholder="Estado " class="form-control">
+                            <input type="text" name="estado" placeholder="Estado" class="form-control">
                         </div>
                         <br>
                         <div class="input-group">
-                            <input type="password" name="senha" placeholder="Senha " class="form-control">
+                            <input type="text" name="telefone" placeholder="Telefone " class="form-control">
                         </div>
-                        <div class="text-center">
+                        <br>
+                        <div class="input-group">
+                            <input type="text" name="email" placeholder="Email" class="form-control">
+                        </div>
+                        <br>
+                         <div class="text-center">
                             <button type="submit" class="btn btn-success">Cadastrar</button>
                         </div>
                     </form>

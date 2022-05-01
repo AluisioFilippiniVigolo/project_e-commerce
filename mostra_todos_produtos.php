@@ -51,7 +51,7 @@ if($produtos) {
 	echo "</table>";
 }
  
-echo "<a href='novo_usuario.php' class='btn btn-primary left-margin'>";
+echo "<a href='cadastro_produto.php' class='btn btn-primary left-margin'>";
 echo "Novo";
 echo "</a>";
 
