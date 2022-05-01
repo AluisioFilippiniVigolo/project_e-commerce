@@ -64,6 +64,10 @@
                         <div class="input-group">
                             <input type="text" name="estado" placeholder="Estado " class="form-control">
                         </div>
+                        <br>
+                        <div class="input-group">
+                            <input type="password" name="senha" placeholder="Senha " class="form-control">
+                        </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-success">Cadastrar</button>
                         </div>
