@@ -6,11 +6,11 @@ include_once('model/ItemPedido.php');
 include_once('model/Pedido.php');
 include_once('model/Produto.php');
 
-include_once('dao/cliente_dao/ClienteDao.php');
-include_once('dao/fornecedor_dao/FornecedorDao.php');
-include_once('dao/itempedido_dao/ItemPedidoDao.php');
-include_once('dao/pedido_dao/PedidoDao.php');
-include_once('dao/produto_dao/ProdutoDao.php');
+include_once('dao/ClienteDao.php');
+include_once('dao/FornecedorDao.php');
+include_once('dao/ItemPedidoDao.php');
+include_once('dao/PedidoDao.php');
+include_once('dao/ProdutoDao.php');
 
 
 include_once('dao/DaoFactory.php');

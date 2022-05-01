@@ -1,19 +1,29 @@
 <?php
 include_once "fachada.php";
 
-$id = @$_GET["codigo"];
 $nome = @$_GET["nome"];
 $login = @$_GET["login"];
-$nome = @$_GET["nome"];
+$senha = @$_GET["senha"];
+$rua = @$_GET["rua"];
+$numero = @$_GET["numero"];
+$complemento = @$_GET["complemento"];
+$bairro = @$_GET["bairro"];
+$cep = @$_GET["cep"];
+$cidade = @$_GET["cidade"];
+$estado = @$_GET["estado"];
+$telefone = @$_GET["telefone"];
+$email = @$_GET["email"];
+$cartaoCredito = @$_GET["cartaoCredito"];
 
-$usuario = new Usuario($id,$login,$senha,$nome);
-$dao = $factory->getUsuarioDao();
+$cliente = new Cliente(null, $nome, $login, $senha, $rua, $numero, $complemento, $bairro, $cep, $cidade, $estado, $telefone, $email, $cartaoCredito);
+$dao = $factory->getClienteDao();
+$dao->altera($cliente);
 
 //$usuario->setPassword(md5($usuario->getPassword()));
 
-$dao->altera($usuario);
+$dao->altera($cliente);
 
-header("Location: usuarios.php");
+header("Location: mostra_todos_clientes.php");
 exit;
 
 ?>

@@ -17,10 +17,10 @@
         <div class="col-md-4">
             <div class="panel panel-default panel-login">
                 <div class="panel-heading text-center">
-                    Cadastro Usuario
+                    Cadastro Fornecedor
                 </div>
                 <div class="panel-body">
-                    <form action="autentica.php" method="POST">
+                    <form action="insere_fornecedor.php" method="POST">
                         <div class="input-group">
                             <input type="text" name="nome" placeholder="Nome" class="form-control">
                         </div>
