@@ -41,20 +41,20 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(":codigo", $cliente->getCodigo());
-    $stmt->bindParam(":nome", $cliente->getNome());
-    $stmt->bindParam(":login", $cliente->getLogin());
-    $stmt->bindParam(":senha", md5($cliente->getSenha()));
-    $stmt->bindParam(":rua", $cliente->getRua());
-    $stmt->bindParam(":numero", $cliente->getNumero());
-    $stmt->bindParam(":complemento", $cliente->getComplemento());
-    $stmt->bindParam(":bairro", $cliente->getBairro());
-    $stmt->bindParam(":cep", $cliente->getCep());
-    $stmt->bindParam(":cidade", $cliente->getCidade());
-    $stmt->bindParam(":estado", $cliente->getEstado());
-    $stmt->bindParam(":telefone", $cliente->getTelefone());
-    $stmt->bindParam(":email", $cliente->getEmail());
-    $stmt->bindParam(":cartaocredito", $cliente->getCartaoCredito());
+    $stmt->bindValue(":codigo", $cliente->getCodigo());
+    $stmt->bindValue(":nome", $cliente->getNome());
+    $stmt->bindValue(":login", $cliente->getLogin());
+    $stmt->bindValue(":senha", md5($cliente->getSenha()));
+    $stmt->bindValue(":rua", $cliente->getRua());
+    $stmt->bindValue(":numero", $cliente->getNumero());
+    $stmt->bindValue(":complemento", $cliente->getComplemento());
+    $stmt->bindValue(":bairro", $cliente->getBairro());
+    $stmt->bindValue(":cep", $cliente->getCep());
+    $stmt->bindValue(":cidade", $cliente->getCidade());
+    $stmt->bindValue(":estado", $cliente->getEstado());
+    $stmt->bindValue(":telefone", $cliente->getTelefone());
+    $stmt->bindValue(":email", $cliente->getEmail());
+    $stmt->bindValue(":cartaocredito", $cliente->getCartaoCredito());
 
     if($stmt->execute()){
         return true;
@@ -106,20 +106,20 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(":codigo", $cliente->getCodigo());
-    $stmt->bindParam(":nome", $cliente->getNome());
-    $stmt->bindParam(":login", $cliente->getLogin());
-    $stmt->bindParam(":senha", md5($cliente->getSenha()));
-    $stmt->bindParam(":rua", $cliente->getRua());
-    $stmt->bindParam(":numero", $cliente->getNumero());
-    $stmt->bindParam(":complemento", $cliente->getComplemento());
-    $stmt->bindParam(":bairro", $cliente->getBairro());
-    $stmt->bindParam(":cep", $cliente->getCep());
-    $stmt->bindParam(":cidade", $cliente->getCidade());
-    $stmt->bindParam(":estado", $cliente->getEstado());
-    $stmt->bindParam(":telefone", $cliente->getTelefone());
-    $stmt->bindParam(":email", $cliente->getEmail());
-    $stmt->bindParam(":cartaocredito", $cliente->getCartaoCredito());
+    $stmt->bindValue(":codigo", $cliente->getCodigo());
+    $stmt->bindValue(":nome", $cliente->getNome());
+    $stmt->bindValue(":login", $cliente->getLogin());
+    $stmt->bindValue(":senha", md5($cliente->getSenha()));
+    $stmt->bindValue(":rua", $cliente->getRua());
+    $stmt->bindValue(":numero", $cliente->getNumero());
+    $stmt->bindValue(":complemento", $cliente->getComplemento());
+    $stmt->bindValue(":bairro", $cliente->getBairro());
+    $stmt->bindValue(":cep", $cliente->getCep());
+    $stmt->bindValue(":cidade", $cliente->getCidade());
+    $stmt->bindValue(":estado", $cliente->getEstado());
+    $stmt->bindValue(":telefone", $cliente->getTelefone());
+    $stmt->bindValue(":email", $cliente->getEmail());
+    $stmt->bindValue(":cartaocredito", $cliente->getCartaoCredito());
 
     // execute the query
     if($stmt->execute()){
@@ -205,7 +205,7 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
         1 OFFSET 0";
 
   $stmt = $this->conn->prepare( $query );
-  $stmt->bindParam(1, $login);
+  $stmt->bindValue(1, $login);
   $stmt->execute();
 
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -241,7 +241,7 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
   
     $stmt = $this->conn->prepare($query);
     $parametro = "%" . $palavra . "%";
-    $stmt->bindParam(1, $parametro);
+    $stmt->bindValue(1, $parametro);
     $stmt->execute();
   
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){

@@ -25,12 +25,12 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(":codigo", $produto->getCodigo());
-    $stmt->bindParam(":nome", $produto->getNome());
-    $stmt->bindParam(":descricao", $produto->getDescricao());
-    $stmt->bindParam(":fornecedor", $produto->getFornecedor());
-    $stmt->bindParam(":quantidade", $produto->getQuantidade());
-    $stmt->bindParam(":preco", $produto->getPreco());
+    $stmt->bindValue(":codigo", $produto->getCodigo());
+    $stmt->bindValue(":nome", $produto->getNome());
+    $stmt->bindValue(":descricao", $produto->getDescricao());
+    $stmt->bindValue(":fornecedor", $produto->getFornecedor());
+    $stmt->bindValue(":quantidade", $produto->getQuantidade());
+    $stmt->bindValue(":preco", $produto->getPreco());
 
     if($stmt->execute()){
         return true;
@@ -74,12 +74,12 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(":codigo", $produto->getCodigo());
-    $stmt->bindParam(":nome", $produto->getNome());
-    $stmt->bindParam(":descricao", $produto->getDescricao());
-    $stmt->bindParam(":fornecedor", $produto->getFornecedor());
-    $stmt->bindParam(":quantidade", $produto->getQuantidade());
-    $stmt->bindParam(":preco", $produto->getPreco());
+    $stmt->bindValue(":codigo", $produto->getCodigo());
+    $stmt->bindValue(":nome", $produto->getNome());
+    $stmt->bindValue(":descricao", $produto->getDescricao());
+    $stmt->bindValue(":fornecedor", $produto->getFornecedor());
+    $stmt->bindValue(":quantidade", $produto->getQuantidade());
+    $stmt->bindValue(":preco", $produto->getPreco());
 
     // execute the query
     if($stmt->execute()){
@@ -107,7 +107,7 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
         1 OFFSET 0";
   
     $stmt = $this->conn->prepare( $query );
-    $stmt->bindParam(1, $codigo);
+    $stmt->bindValue(1, $codigo);
     $stmt->execute();
   
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -140,7 +140,7 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
   
     $stmt = $this->conn->prepare($query);
     $parametro = "%" . $palavra . "%";
-    $stmt->bindParam(1, $parametro);
+    $stmt->bindValue(1, $parametro);
     $stmt->execute();
   
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){

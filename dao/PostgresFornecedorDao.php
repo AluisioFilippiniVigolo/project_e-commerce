@@ -37,18 +37,18 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(":codigo", $fornecedor->getCodigo());
-    $stmt->bindParam(":nome", $fornecedor->getNome());
-    $stmt->bindParam(":descricao", $fornecedor->getLogin());
-    $stmt->bindParam(":rua", $fornecedor->getRua());
-    $stmt->bindParam(":numero", $fornecedor->getNumero());
-    $stmt->bindParam(":complemento", $fornecedor->getComplemento());
-    $stmt->bindParam(":bairro", $fornecedor->getBairro());
-    $stmt->bindParam(":cep", $fornecedor->getCep());
-    $stmt->bindParam(":cidade", $fornecedor->getCidade());
-    $stmt->bindParam(":estado", $fornecedor->getEstado());
-    $stmt->bindParam(":telefone", $fornecedor->getTelefone());
-    $stmt->bindParam(":email", $fornecedor->getEmail());
+    $stmt->bindValue(":codigo", $fornecedor->getCodigo());
+    $stmt->bindValue(":nome", $fornecedor->getNome());
+    $stmt->bindValue(":descricao", $fornecedor->getLogin());
+    $stmt->bindValue(":rua", $fornecedor->getRua());
+    $stmt->bindValue(":numero", $fornecedor->getNumero());
+    $stmt->bindValue(":complemento", $fornecedor->getComplemento());
+    $stmt->bindValue(":bairro", $fornecedor->getBairro());
+    $stmt->bindValue(":cep", $fornecedor->getCep());
+    $stmt->bindValue(":cidade", $fornecedor->getCidade());
+    $stmt->bindValue(":estado", $fornecedor->getEstado());
+    $stmt->bindValue(":telefone", $fornecedor->getTelefone());
+    $stmt->bindValue(":email", $fornecedor->getEmail());
 
     if($stmt->execute()){
         return true;
@@ -98,18 +98,18 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(":codigo", $fornecedor->getCodigo());
-    $stmt->bindParam(":nome", $fornecedor->getNome());
-    $stmt->bindParam(":descricao", $fornecedor->getLogin());
-    $stmt->bindParam(":rua", $fornecedor->getRua());
-    $stmt->bindParam(":numero", $fornecedor->getNumero());
-    $stmt->bindParam(":complemento", $fornecedor->getComplemento());
-    $stmt->bindParam(":bairro", $fornecedor->getBairro());
-    $stmt->bindParam(":cep", $fornecedor->getCep());
-    $stmt->bindParam(":cidade", $fornecedor->getCidade());
-    $stmt->bindParam(":estado", $fornecedor->getEstado());
-    $stmt->bindParam(":telefone", $fornecedor->getTelefone());
-    $stmt->bindParam(":email", $fornecedor->getEmail());
+    $stmt->bindValue(":codigo", $fornecedor->getCodigo());
+    $stmt->bindValue(":nome", $fornecedor->getNome());
+    $stmt->bindValue(":descricao", $fornecedor->getLogin());
+    $stmt->bindValue(":rua", $fornecedor->getRua());
+    $stmt->bindValue(":numero", $fornecedor->getNumero());
+    $stmt->bindValue(":complemento", $fornecedor->getComplemento());
+    $stmt->bindValue(":bairro", $fornecedor->getBairro());
+    $stmt->bindValue(":cep", $fornecedor->getCep());
+    $stmt->bindValue(":cidade", $fornecedor->getCidade());
+    $stmt->bindValue(":estado", $fornecedor->getEstado());
+    $stmt->bindValue(":telefone", $fornecedor->getTelefone());
+    $stmt->bindValue(":email", $fornecedor->getEmail());
 
     // execute the query
     if($stmt->execute()){
@@ -143,7 +143,7 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
         1 OFFSET 0";
   
     $stmt = $this->conn->prepare( $query );
-    $stmt->bindParam(1, $codigo);
+    $stmt->bindValue(1, $codigo);
     $stmt->execute();
   
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -188,7 +188,7 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
   
     $stmt = $this->conn->prepare($query);
     $parametro = "%" . $palavra . "%";
-    $stmt->bindParam(1, $parametro);
+    $stmt->bindValue(1, $parametro);
     $stmt->execute();
   
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
