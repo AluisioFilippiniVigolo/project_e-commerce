@@ -1,7 +1,7 @@
 <?php
 include_once "fachada.php";
 include "verifica.php";
-$id = @$_GET["id"];
+$id = @$_GET["codigo"];
 
 $dao = $factory->getClienteDao();
 $cliente = $dao->buscaPorCodigo($codigo);
@@ -17,10 +17,10 @@ if($cliente) {
 echo "<section>";
 //dados do usuário
 echo "<h1> Login : " . $cliente->getLogin() . "</h1>";
-echo "<p> Id : " . $cliente->getCodigo() . "</p>";
+echo "<p> Codigo : " . $cliente->getCodigo() . "</p>";
 echo "<p> Nome : " . $cliente->getNome() . "</p>";
 // botão voltar
-echo "<a href='cliente.php' class='btn btn-primary left-margin'>";
+echo "<a href='clientes.php' class='btn btn-primary left-margin'>";
 echo "Voltar";
 echo "</a>";
 echo "</section>";

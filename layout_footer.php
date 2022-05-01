@@ -16,9 +16,6 @@
 
 		if(isset($_SESSION["nome_usuario"])) {
 			// Menu de navegação : só mostra se logado
-      echo "<li>";
-			echo "<a href='pagina_com_login.php'>Página com login</a>";
-			echo "</li>";
 
       echo "<li>";
 			echo "<a href='usuarios.php'>Usuários</a>";
@@ -29,7 +26,7 @@
 	</aside>
 
 	<footer>
-		<p>Este é o mini-website de demonstração do PHP : 2021 - Alexandre Krohn</p>
+		<p>Footer</p>
 	</footer>
 
 </body>

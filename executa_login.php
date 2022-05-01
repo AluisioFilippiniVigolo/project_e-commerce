@@ -23,16 +23,16 @@ if(!$login || !$senha)
 $dao = $factory->getClienteDao();
 $cliente = $dao->buscaPorLogin($login);
 
-var_dump($usuario);
+var_dump($cliente);
 
 $problemas = FALSE;
-if($usuario) {
+if($cliente) {
     // Agora verifica a senha 
-    if(!strcmp($senha, $usuario->getSenha())) 
+    if(!strcmp($senha, $cliente->getSenha())) 
     { 
         // TUDO OK! Agora, passa os dados para a sessão e redireciona o usuário 
-        $_SESSION["id_usuario"]= $usuario->getId(); 
-        $_SESSION["nome_usuario"] = stripslashes($usuario->getNome()); 
+        $_SESSION["id_usuario"]= $cliente->getCodigo(); 
+        $_SESSION["nome_usuario"] = stripslashes($cliente->getNome()); 
         //$_SESSION["permissao"]= $dados["postar"]; 
         header("Location: index.php"); 
         exit; 
