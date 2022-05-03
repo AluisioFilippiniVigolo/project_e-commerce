@@ -127,7 +127,7 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
       FROM 
         " . $this->table_name . "
       WHERE
-        nome like ? ORDER BY id ASC";
+        nome like ? ORDER BY PEDNUMERO ASC";
   
     $stmt = $this->conn->prepare($query);
     $parametro = "%" . $palavra . "%";
@@ -175,7 +175,7 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
         PEDSITUACAO)   
       FROM 
           " . $this->table_name . "
-          ORDER BY id ASC";
+          ORDER BY PEDNUMERO ASC";
   
     $stmt = $this->conn->prepare( $query );
     $stmt->execute();

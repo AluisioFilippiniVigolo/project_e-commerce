@@ -123,7 +123,7 @@ class PostgresItemPedidoDao extends PostgresDao implements ItemPedidoDao {
 
   public function buscaTodos() {
 
-    $itemPedido = array();
+    $itemPedidos = array();
 
     $query = "SELECT (ITEPRODUTO, 
         ITEPEDIDO,
@@ -138,12 +138,12 @@ class PostgresItemPedidoDao extends PostgresDao implements ItemPedidoDao {
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $itemPedido[] = new ItemPedido($produto, 
+        $itemPedidos[] = new ItemPedido($produto, 
           $pedido, 
           $quantidade, 
           $preco); 
       }
-    return $itemPedido;
+    return $itemPedidos;
   }
 
 }

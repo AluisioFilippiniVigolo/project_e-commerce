@@ -93,12 +93,12 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
       
     $produto = null;
 
-    $query = "SELECT (PROCOD, 
+    $query = "SELECT PROCOD, 
         PRONOME,
         PRODESCRICAO,
         PROFORNECEDOR,
         PROQUANTIDADE,
-        PROPRECO)  
+        PROPRECO 
       FROM 
         " . $this->table_name . "
       WHERE
@@ -127,16 +127,16 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
       
     $produto = array();        
 
-    $query = "SELECT (PROCOD, 
+    $query = "SELECT PROCOD, 
         PRONOME,
         PRODESCRICAO,
         PROFORNECEDOR,
         PROQUANTIDADE,
-        PROPRECO)  
+        PROPRECO 
       FROM 
         " . $this->table_name . "
       WHERE
-        nome like ? ORDER BY id ASC";
+        PRONOME like ? ORDER BY PROCOD ASC";
   
     $stmt = $this->conn->prepare($query);
     $parametro = "%" . $palavra . "%";
@@ -145,12 +145,12 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
   
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $produto[] = new Produto($codigo, 
-          $nome, 
-          $descricao, 
-          $fornecedor, 
-          $quantidade, 
-          $preco); 
+        $produtos[] = new Produto($procodigo, 
+          $pronome, 
+          $prodescricao, 
+          $profornecedor, 
+          $proquantidade, 
+          $propreco); 
     }
 
     return $produto;
@@ -176,31 +176,31 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
 
   public function buscaTodos() {
 
-    $produto = array();
+    $produtos = array();
 
-    $query = "SELECT (PROCOD, 
+    $query = "SELECT PROCOD, 
         PRONOME,
         PRODESCRICAO,
         PROFORNECEDOR,
         PROQUANTIDADE,
-        PROPRECO)    
+        PROPRECO    
       FROM 
           " . $this->table_name . "
-          ORDER BY id ASC";
+          ORDER BY PROCOD ASC";
   
     $stmt = $this->conn->prepare( $query );
     $stmt->execute();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $produto[] = new Produto($codigo, 
-          $nome, 
-          $descricao, 
-          $fornecedor, 
-          $quantidade, 
-          $preco); 
+        $produtos[] = new Produto($procodigo, 
+          $pronome, 
+          $prodescricao, 
+          $profornecedor, 
+          $proquantidade, 
+          $propreco); 
       }
-    return $produto;
+    return $produtos;
   }
 
 }

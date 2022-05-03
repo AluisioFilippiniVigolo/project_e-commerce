@@ -123,7 +123,7 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
       
     $cliente = null;
 
-    $query = "SELECT (FORCOD, 
+    $query = "SELECT FORCOD, 
         FORNOME, 
         FORDESCRICAO,
         FORRUA,
@@ -134,7 +134,7 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
         FORCIDADE,
         FORESTADO,
         FORTELEFONE,
-        FOREMAIL)  
+        FOREMAIL  
       FROM 
         " . $this->table_name . "
       WHERE
@@ -167,9 +167,9 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
 
   public function buscaPorNome($palavra) {
       
-    $cliente = array();        
+    $fornecedores = array();        
 
-    $query = "SELECT (FORCOD, 
+    $query = "SELECT FORCOD, 
         FORNOME, 
         FORDESCRICAO,
         FORRUA,
@@ -180,11 +180,11 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
         FORCIDADE,
         FORESTADO,
         FORTELEFONE,
-        FOREMAIL)  
+        FOREMAIL  
       FROM 
         " . $this->table_name . "
       WHERE
-        nome like ? ORDER BY id ASC";
+        FORNOME like ? ORDER BY FORCOD ASC";
   
     $stmt = $this->conn->prepare($query);
     $parametro = "%" . $palavra . "%";
@@ -193,21 +193,21 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
   
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $fornecedor[] = new Fornecedor($codigo, 
-          $nome, 
-          $descricao, 
-          $rua, 
-          $numero, 
-          $complemento, 
-          $bairro, 
-          $cep, 
-          $cidade,
-          $estado, 
-          $telefone, 
-          $email); 
+        $fornecedores[] = new Fornecedor($codigo, 
+          $fornome, 
+          $fordescricao, 
+          $forrua, 
+          $fornumero, 
+          $forcomplemento, 
+          $forbairro, 
+          $forcep, 
+          $forcidade,
+          $forestado, 
+          $fortelefone, 
+          $foremail); 
     }
 
-    return $fornecedor;
+    return $fornecedores;
   }
 
   public function contaTodos() {
@@ -230,9 +230,9 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
 
   public function buscaTodos() {
 
-    $fornecedor = array();
+    $fornecedores = array();
 
-    $query = "SELECT (FORCOD, 
+    $query = "SELECT FORCOD, 
         FORNOME, 
         FORDESCRICAO,
         FORRUA,
@@ -243,30 +243,30 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
         FORCIDADE,
         FORESTADO,
         FORTELEFONE,
-        FOREMAIL)  
+        FOREMAIL  
       FROM 
           " . $this->table_name . "
-          ORDER BY id ASC";
+          ORDER BY FORCOD ASC";
   
     $stmt = $this->conn->prepare( $query );
     $stmt->execute();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $fornecedor[] = new Fornecedor($codigo, 
-          $nome, 
-          $descricao, 
-          $rua, 
-          $numero, 
-          $complemento, 
-          $bairro, 
-          $cep, 
-          $cidade,
-          $estado, 
-          $telefone, 
-          $email); 
+        $fornecedores[] = new Fornecedor($codigo, 
+          $fornome, 
+          $fordescricao, 
+          $forrua, 
+          $fornumero, 
+          $forcomplemento, 
+          $forbairro, 
+          $forcep, 
+          $forcidade,
+          $forestado, 
+          $fortelefone, 
+          $foremail); 
       }
-    return $fornecedor;
+    return $fornecedores;
   }
 
 }

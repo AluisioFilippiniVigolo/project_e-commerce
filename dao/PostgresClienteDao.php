@@ -10,8 +10,7 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
   public function insere($cliente) {
 
     $query = "INSERT INTO " . $this->table_name . "
-      (CLICOD,
-      CLINOME, 
+      (CLINOME, 
       CLILOGIN,
       CLISENHA,
       CLIRUA,
@@ -24,8 +23,7 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
       CLITELEFONE,
       CLIEMAIL,
       CLICARTAOCREDITO)
-      VALUES (:codigo, 
-        :nome, 
+      VALUES (:nome, 
         :login,
         :senha, 
         :rua, 
@@ -41,10 +39,10 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindValue(":codigo", $cliente->getCodigo());
     $stmt->bindValue(":nome", $cliente->getNome());
     $stmt->bindValue(":login", $cliente->getLogin());
-    $stmt->bindValue(":senha", md5($cliente->getSenha()));
+    //$stmt->bindValue(":senha", md5($cliente->getSenha()));
+    $stmt->bindValue(":senha", $cliente->getSenha());
     $stmt->bindValue(":rua", $cliente->getRua());
     $stmt->bindValue(":numero", $cliente->getNumero());
     $stmt->bindValue(":complemento", $cliente->getComplemento());
@@ -133,7 +131,7 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
       
     $cliente = null;
 
-    $query = "SELECT (CLICOD, 
+    $query = "SELECT CLICOD, 
         CLINOME,
         CLILOGIN,
         CLISENHA,
@@ -146,7 +144,7 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
         CLIESTADO,
         CLITELEFONE,
         CLIEMAIL,
-        CLICARTAOCREDITO)   
+        CLICARTAOCREDITO   
       FROM 
         " . $this->table_name . "
       WHERE
@@ -183,7 +181,7 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
 
     $cliente = null;
 
-    $query = "SELECT (CLICOD, 
+    $query = "SELECT CLICOD, 
         CLINOME,
         CLILOGIN,
         CLISENHA,
@@ -196,11 +194,11 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
         CLIESTADO,
         CLITELEFONE,
         CLIEMAIL,
-        CLICARTAOCREDITO) 
+        CLICARTAOCREDITO 
       FROM 
         " . $this->table_name . "
       WHERE
-        login = ?
+        CLILOGIN = ?
       LIMIT
         1 OFFSET 0";
 
@@ -218,9 +216,9 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
 
   public function buscaPorNome($palavra) {
       
-    $cliente = array();        
+    $clientes = array();        
 
-    $query = "SELECT (CLICOD, 
+    $query = "SELECT CLICOD, 
         CLINOME,
         CLILOGIN,
         CLISENHA,
@@ -233,11 +231,11 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
         CLIESTADO,
         CLITELEFONE,
         CLIEMAIL,
-        CLICARTAOCREDITO) 
+        CLICARTAOCREDITO 
       FROM 
         " . $this->table_name . "
       WHERE
-        nome like ? ORDER BY id ASC";
+        CLINOME like ? ORDER BY CLICOD ASC";
   
     $stmt = $this->conn->prepare($query);
     $parametro = "%" . $palavra . "%";
@@ -246,20 +244,20 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
   
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $cliente[] = new Cliente($codigo, 
-          $nome, 
-          $login, 
-          $senha, 
-          $rua, 
-          $numero, 
-          $complemento, 
-          $bairro, 
-          $cep, 
-          $cidade,
-          $estado, 
-          $telefone, 
-          $email, 
-          $cartaocredito);
+        $clientes[] = new Cliente($clicod, 
+          $clinome, 
+          $clilogin, 
+          $clisenha, 
+          $clirua, 
+          $clinumero, 
+          $clicomplemento, 
+          $clibairro, 
+          $clicep, 
+          $clicidade,
+          $cliestado, 
+          $clitelefone, 
+          $cliemail, 
+          $clicartaocredito);
     }
 
     return $clientes;
@@ -285,9 +283,9 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
 
   public function buscaTodos() {
 
-    $cliente = array();
+    $clientes = array();
 
-    $query = "SELECT (CLICOD, 
+    $query = "SELECT CLICOD, 
         CLINOME,
         CLILOGIN,
         CLISENHA,
@@ -300,33 +298,33 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
         CLIESTADO,
         CLITELEFONE,
         CLIEMAIL,
-        CLICARTAOCREDITO) 
+        CLICARTAOCREDITO 
       FROM 
           " . $this->table_name . "
-          ORDER BY id ASC";
+          ORDER BY CLICOD ASC";
   
     $stmt = $this->conn->prepare( $query );
     $stmt->execute();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $cliente[] = new Cliente($codigo, 
-          $nome, 
-          $login, 
-          $senha, 
-          $rua, 
-          $numero, 
-          $complemento, 
-          $bairro, 
-          $cep, 
-          $cidade,
-          $estado, 
-          $telefone, 
-          $email, 
-          $cartaocredito);
+        $clientes[] = new Cliente($clicod, 
+          $clinome, 
+          $clilogin, 
+          $clisenha, 
+          $clirua, 
+          $clinumero, 
+          $clicomplemento, 
+          $clibairro, 
+          $clicep, 
+          $clicidade,
+          $cliestado, 
+          $clitelefone, 
+          $cliemail, 
+          $clicartaocredito);
     }
     
-    return $cliente;
+    return $clientes;
   }
 
 }

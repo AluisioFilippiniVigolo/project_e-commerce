@@ -20,12 +20,12 @@
                     LOGIN
                 </div>
                 <div class="panel-body">
-                    <form action="autentica.php" method="POST">
+                    <form action="executa_login.php" method="POST">
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-user"></i>
                             </span>
-                            <input type="text" name="usuario" placeholder="Usuário" class="form-control">
+                            <input type="text" name="login" placeholder="Usuário" class="form-control">
                         </div>
                         <br>
                         <div class="input-group">
@@ -36,7 +36,7 @@
                         </div>
                         <br>
                         <p><a>Esqueci minha senha</a></p>
-                        <p><a href="cadastro.php"> Primeiro acesso?</a></p>
+                        <p><a href="cadastro_cliente.php"> Primeiro acesso?</a></p>
                         <div class="text-center">
                             <button type="submit" class="btn btn-success">ENTRAR</button>
                         </div>
