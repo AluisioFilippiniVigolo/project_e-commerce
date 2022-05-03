@@ -65,7 +65,7 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
     $stmt = $this->conn->prepare($query);
 
     // bind parameters
-    $stmt->bindParam(':codigo', $codigo);
+    $stmt->bindValue(':codigo', $codigo);
 
     // execute the query
     if($stmt->execute()){
@@ -121,7 +121,7 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
 
   public function buscaPorCodigo($codigo) {
       
-    $cliente = null;
+    $fornecedor = null;
 
     $query = "SELECT FORCOD, 
         FORNOME, 

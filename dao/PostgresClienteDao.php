@@ -69,7 +69,7 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
     $stmt = $this->conn->prepare($query);
 
     // bind parameters
-    $stmt->bindParam(':codigo', $codigo);
+    $stmt->bindValue(':codigo', $codigo);
 
     // execute the query
     if($stmt->execute()){
@@ -153,7 +153,7 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
         1 OFFSET 0";
   
     $stmt = $this->conn->prepare( $query );
-    $stmt->bindParam(1, $codigo);
+    $stmt->bindValue(1, $codigo);
     $stmt->execute();
   
     $row = $stmt->fetch(PDO::FETCH_ASSOC);

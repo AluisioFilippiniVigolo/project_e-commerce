@@ -2,12 +2,12 @@
 $page_title = "Alteração de Cliente";
 
 include_once "fachada.php";
-include "verifica.php";
+//include "verifica.php";
 
-$id = @$_GET["codigo"];
+$codigo = @$_GET["codigo"];
 
-$dao = $factory->getProdutoDao();
-$produto = $dao->buscaPorCodigo($codigo);
+$dao = $factory->getClienteDao();
+$cliente = $dao->buscaPorCodigo($codigo);
 
 // layout do cabeçalho
 include_once "layout_header.php";
@@ -65,7 +65,7 @@ include_once "layout_header.php";
         </tr>
         <tr>
             <td>Cartão de Crédito</td>
-            <td><input type='text' name='cep' value='<?php echo $cliente->cartaoCredito();?>' class='form-control' /></td>
+            <td><input type='text' name='cep' value='<?php echo $cliente->getCartaoCredito();?>' class='form-control' /></td>
         </tr>
         <tr>
             <td>
