@@ -1,7 +1,7 @@
 <?php
 // layout do cabeçalho
 
-//include "verifica.php";
+include "verifica.php";
 
 $page_title = "Listagem de Clientes";
 

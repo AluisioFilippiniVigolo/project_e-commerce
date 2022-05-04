@@ -2,7 +2,7 @@
 $page_title = "Alteração de Cliente";
 
 include_once "fachada.php";
-//include "verifica.php";
+include "verifica.php";
 
 $codigo = @$_GET["codigo"];
 
@@ -65,7 +65,7 @@ include_once "layout_header.php";
         </tr>
         <tr>
             <td>Cartão de Crédito</td>
-            <td><input type='text' name='cep' value='<?php echo $cliente->getCartaoCredito();?>' class='form-control' /></td>
+            <td><input type='text' name='cartaoCredito' value='<?php echo $cliente->getCartaoCredito();?>' class='form-control' /></td>
         </tr>
         <tr>
             <td>

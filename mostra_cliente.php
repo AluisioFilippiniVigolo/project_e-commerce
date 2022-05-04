@@ -1,7 +1,7 @@
 <?php
 include_once "fachada.php";
 include "verifica.php";
-$id = @$_GET["codigo"];
+$codigo = @$_GET["codigo"];
 
 $dao = $factory->getClienteDao();
 $cliente = $dao->buscaPorCodigo($codigo);

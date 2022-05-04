@@ -10,20 +10,18 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
   public function insere($fornecedor) {
 
     $query = "INSERT INTO " . $this->table_name . "
-      (FORCOD,
-      FORNOME, 
-      FORDESCRICAO,
-      FORRUA,
-      FORNUMERO,
-      FORCOMPLEMENTO,
-      FORBAIRRO,
-      FORCEP,
-      FORCIDADE,
-      FORESTADO,
-      FORTELEFONE,
-      FOREMAIL)
-      VALUES (:codigo, 
-        :nome, 
+      (fornome, 
+      fordescricao,
+      forrua,
+      fornumero,
+      forcomplemento,
+      forbairro,
+      forcep,
+      forcidade,
+      forestado,
+      fortelefone,
+      foremail)
+      VALUES (:nome, 
         :descricao, 
         :rua, 
         :numero, 
@@ -37,9 +35,10 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindValue(":codigo", $fornecedor->getCodigo());
+   var_dump($fornecedor);
+
     $stmt->bindValue(":nome", $fornecedor->getNome());
-    $stmt->bindValue(":descricao", $fornecedor->getLogin());
+    $stmt->bindValue(":descricao", $fornecedor->getDescricao());
     $stmt->bindValue(":rua", $fornecedor->getRua());
     $stmt->bindValue(":numero", $fornecedor->getNumero());
     $stmt->bindValue(":complemento", $fornecedor->getComplemento());
@@ -60,7 +59,7 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
 
   public function removePorCodigo($codigo) {
     $query = "DELETE FROM " . $this->table_name . 
-    " WHERE FORCOD = :codigo";
+    " WHERE forcod = :codigo";
 
     $stmt = $this->conn->prepare($query);
 
@@ -82,19 +81,19 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
   public function altera($fornecedor) {
 
     $query = "UPDATE " . $this->table_name . "
-    SET FORCOD = :codido, 
-    FORNOME = :nome,
-    FORDESCRICAO = :descricao,
-    FORRUA = :rua,
-    FORNUMERO = :numero,
-    FORCOMPLEMENTO = :complemento,
-    FORBAIRRO = :bairro,
-    FORCEP = :cep,
-    FORCIDADE = :cidade,
-    FORESTADO = :estado,
-    FORTELEFONE = :telefone, 
-    FOREMAIL = :email,
-    WHERE FORCOD = :codigo";
+    SET forcod = :codido, 
+    fornome = :nome,
+    fordescricao = :descricao,
+    forrua = :rua,
+    fornumero = :numero,
+    forcomplemento = :complemento,
+    forbairro = :bairro,
+    forcep = :cep,
+    forcidade = :cidade,
+    forestado = :estado,
+    fortelefone = :telefone, 
+    foremail = :email,
+    WHERE forcod = :codigo";
 
     $stmt = $this->conn->prepare($query);
 
@@ -123,22 +122,22 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
       
     $fornecedor = null;
 
-    $query = "SELECT FORCOD, 
-        FORNOME, 
-        FORDESCRICAO,
-        FORRUA,
-        FORNUMERO,
-        FORCOMPLEMENTO,
-        FORBAIRRO,
-        FORCEP,
-        FORCIDADE,
-        FORESTADO,
-        FORTELEFONE,
-        FOREMAIL  
+    $query = "SELECT forcod, 
+        fornome, 
+        fordescricao,
+        forrua,
+        fornumero,
+        forcomplemento,
+        forbairro,
+        forcep,
+        forcidade,
+        forestado,
+        fortelefone,
+        foremail  
       FROM 
         " . $this->table_name . "
       WHERE
-        FORCOD = ?
+        forcod = ?
       LIMIT
         1 OFFSET 0";
   
@@ -148,18 +147,18 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
   
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if($row) {
-        $fornecedor = new Fornecedor($row['FORCOD'], 
-        $row['FORNOME'], 
-        $row['FORDESCRICAO'], 
-        $row['FORRUA'],
-        $row['FORNUMERO'], 
-        $row['FORCOMPLEMENTO'], 
-        $row['FORBAIRRO'], 
-        $row['FORCEP'], 
-        $row['FORCIDADE'], 
-        $row['FORESTADO'], 
-        $row['FORTELEFONE'], 
-        $row['FOREMAIL']);
+        $fornecedor = new Fornecedor($row['forcod'], 
+        $row['fornome'], 
+        $row['fordescricao'], 
+        $row['forrua'],
+        $row['fornumero'], 
+        $row['forcomplemento'], 
+        $row['forbairro'], 
+        $row['forcep'], 
+        $row['forcidade'], 
+        $row['forestado'], 
+        $row['fortelefone'], 
+        $row['foremail']);
     } 
   
     return $fornecedor;
@@ -169,22 +168,22 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
       
     $fornecedores = array();        
 
-    $query = "SELECT FORCOD, 
-        FORNOME, 
-        FORDESCRICAO,
-        FORRUA,
-        FORNUMERO,
-        FORCOMPLEMENTO,
-        FORBAIRRO,
-        FORCEP,
-        FORCIDADE,
-        FORESTADO,
-        FORTELEFONE,
-        FOREMAIL  
+    $query = "SELECT forcod, 
+        fornome, 
+        fordescricao,
+        forrua,
+        fornumero,
+        forcomplemento,
+        forbairro,
+        forcep,
+        forcidade,
+        forestado,
+        fortelefone,
+        foremail  
       FROM 
         " . $this->table_name . "
       WHERE
-        FORNOME like ? ORDER BY FORCOD ASC";
+        fornome like ? ORDER BY forcod ASC";
   
     $stmt = $this->conn->prepare($query);
     $parametro = "%" . $palavra . "%";
@@ -232,21 +231,21 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
 
     $fornecedores = array();
 
-    $query = "SELECT FORCOD, 
-        FORNOME, 
-        FORDESCRICAO,
-        FORRUA,
-        FORNUMERO,
-        FORCOMPLEMENTO,
-        FORBAIRRO,
-        FORCEP,
-        FORCIDADE,
-        FORESTADO,
-        FORTELEFONE,
-        FOREMAIL  
+    $query = "SELECT forcod, 
+        fornome, 
+        fordescricao,
+        forrua,
+        fornumero,
+        forcomplemento,
+        forbairro,
+        forcep,
+        forcidade,
+        forestado,
+        fortelefone,
+        foremail  
       FROM 
           " . $this->table_name . "
-          ORDER BY FORCOD ASC";
+          ORDER BY forcod ASC";
   
     $stmt = $this->conn->prepare( $query );
     $stmt->execute();
