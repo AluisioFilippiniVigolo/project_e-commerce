@@ -1,3 +1,9 @@
+<?php
+  $page_title = 'Cadastro de Fornecedores';
+  include_once "layout_header.php";
+  include_once "layout_footer.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,7 +17,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <section class="container">
     <div class="col-md-4"></div>
 
     <div class="col-md-4">
@@ -69,7 +75,7 @@
               <button type="submit" class="btn btn-success">Cadastrar</button>
             </div>
           </form>
-        </div>
+  </section>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
 </body>

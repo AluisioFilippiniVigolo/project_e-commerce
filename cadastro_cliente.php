@@ -1,3 +1,9 @@
+<?php
+  $page_title = 'Cadastro de Cliente';
+  include_once "layout_header.php";
+  include_once "layout_footer.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,9 +17,7 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="col-md-4"></div>
-
+    <section class="container">
         <div class="col-md-4">
             <div class="panel panel-default panel-login">
                 <div class="panel-heading text-center">
@@ -76,6 +80,8 @@
                         </div>
                     </form>
                 </div>
+            </div>
+   </section>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
                 <script src="js/bootstrap.min.js"></script>
 </body>

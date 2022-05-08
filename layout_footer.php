@@ -1,6 +1,16 @@
+<head>
+	<meta charset="UTF-8">
+	<title><?php echo $page_title; ?></title>
+
+	<link rel="stylesheet" type="text/css" href="libs/css/custom2.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="libs/css/custom.css" />
+
+</head>
+
 <aside>
 		<h2>Navegação</h2>
-		<ul>
+		<ul class="nav flex-column">
 		<?php
 
 		include_once "comum.php";
@@ -11,17 +21,39 @@
 		
         // Menu de navegação : mostra sempre
 
+    echo "<li class='nav-item'>";
 		echo "<li><a href='index.php'>Home</a></li>";
-    echo "<li><a href='pagina_sem_login.php'>Página sem login</a></li>";
+    echo "</li>";
 
 		if(isset($_SESSION["nome_usuario"])) {
 			// Menu de navegação : só mostra se logado
 
-      echo "<li>";
-			echo "<a href='usuarios.php'>Usuários</a>";
-			echo "</li>";
-		} 
-	    ?>
+      echo "<li class='nav-item'>";
+      echo "<a href='cadastro_cliente.php'>Novo Cliente</a>";
+      echo "</li>";
+
+      echo "<li class='nav-item'>";
+      echo "<a href='cadastro_fornecedor.php'>Novo Fornecedor</a>";
+      echo "</li>";
+
+      echo "<li class='nav-item'>";
+      echo "<a href='cadastro_produto.php'>Novo Produto</a>";
+      echo "</li>";
+
+      echo "<li class='nav-item'>"; 
+      echo "<a href='mostra_todos_clientes.php'>Listar Clientes</a>";
+      echo "</li>";
+
+      echo "<li class='nav-item'>";
+      echo "<a href='mostra_todos_fornecedores.php'>Listar Fornecedores</a>";
+      echo "</li>";
+
+      echo "<li class='nav-item'>";
+      echo "<a href='mostra_todos_produtos.php'>Listar Produtos</a>";
+      echo "</li>";
+      
+    } 
+    ?>
 		</ul>
 	</aside>
 
