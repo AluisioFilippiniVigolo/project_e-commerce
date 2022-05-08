@@ -81,7 +81,7 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
   public function altera($fornecedor) {
 
     $query = "UPDATE " . $this->table_name . "
-    SET forcod = :codido, 
+    SET
     fornome = :nome,
     fordescricao = :descricao,
     forrua = :rua,
@@ -92,14 +92,12 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
     forcidade = :cidade,
     forestado = :estado,
     fortelefone = :telefone, 
-    foremail = :email,
-    WHERE forcod = :codigo";
+    foremail = :email";
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindValue(":codigo", $fornecedor->getCodigo());
     $stmt->bindValue(":nome", $fornecedor->getNome());
-    $stmt->bindValue(":descricao", $fornecedor->getLogin());
+    $stmt->bindValue(":descricao", $fornecedor->getDescricao());
     $stmt->bindValue(":rua", $fornecedor->getRua());
     $stmt->bindValue(":numero", $fornecedor->getNumero());
     $stmt->bindValue(":complemento", $fornecedor->getComplemento());
@@ -252,7 +250,7 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $fornecedores[] = new Fornecedor($codigo, 
+        $fornecedores[] = new Fornecedor($forcod, 
           $fornome, 
           $fordescricao, 
           $forrua, 

@@ -11,7 +11,7 @@ $produto = new Produto(null, $nome, $descricao, $fornecedor, $quantidade, $preco
 $dao = $factory->getProdutoDao();
 $dao->altera($produto);
 
-header("Location: mostra_todos_fornecedores.php");
+header("Location: mostra_todos_produtos.php");
 exit;
 
 ?>

@@ -10,14 +10,12 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
   public function insere($produto) {
 
     $query = "INSERT INTO " . $this->table_name . "
-      (procod,
-      pronome, 
+      (pronome, 
       prodescricao,
       profornecedor,
       proquantidade,
       propreco)
-      VALUES (:codigo, 
-        :nome, 
+      VALUES (:nome, 
         :descricao, 
         :fornecedor, 
         :quantidade, 
@@ -25,12 +23,14 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindValue(":codigo", $produto->getCodigo());
+
     $stmt->bindValue(":nome", $produto->getNome());
     $stmt->bindValue(":descricao", $produto->getDescricao());
     $stmt->bindValue(":fornecedor", $produto->getFornecedor());
     $stmt->bindValue(":quantidade", $produto->getQuantidade());
     $stmt->bindValue(":preco", $produto->getPreco());
+
+    var_dump($stmt);
 
     if($stmt->execute()){
         return true;
@@ -42,7 +42,7 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
 
   public function removePorCodigo($codigo) {
     $query = "DELETE FROM " . $this->table_name . 
-    " WHERE PROCOD = :codigo";
+    " WHERE procod = :codigo";
 
     $stmt = $this->conn->prepare($query);
 
@@ -65,16 +65,15 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
   public function altera($produto) {
 
     $query = "UPDATE " . $this->table_name . "
-    SET PROCOD = :codido, 
-      PRONOME = :nome,
-      PRODESCRICAO = :descricao,
-      PROFORNECEDOR = :fornecedor,
-      PROQUANTIDADE = :quantidade,
-      PROPRECO = :preco";
+    SET
+      pronome = :nome,
+      prodescricao = :descricao,
+      profornecedor = :fornecedor,
+      proquantidade = :quantidade,
+      propreco = :preco";
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindValue(":codigo", $produto->getCodigo());
     $stmt->bindValue(":nome", $produto->getNome());
     $stmt->bindValue(":descricao", $produto->getDescricao());
     $stmt->bindValue(":fornecedor", $produto->getFornecedor());
@@ -93,16 +92,16 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
       
     $produto = null;
 
-    $query = "SELECT PROCOD, 
-        PRONOME,
-        PRODESCRICAO,
-        PROFORNECEDOR,
-        PROQUANTIDADE,
-        PROPRECO 
+    $query = "SELECT procod, 
+        pronome,
+        prodescricao,
+        profornecedor,
+        proquantidade,
+        propreco 
       FROM 
         " . $this->table_name . "
       WHERE
-        FORCOD = ?
+        procod = ?
       LIMIT
         1 OFFSET 0";
   
@@ -112,12 +111,12 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
   
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if($row) {
-        $produto = new Produto($row['PROCOD'], 
-        $row['PRONOME'], 
-        $row['PRODESCRICAO'], 
-        $row['PROFORNECEDOR'],
-        $row['PROQUANTIDADE'], 
-        $row['PROPRECO']);
+        $produto = new Produto($row['procod'], 
+        $row['pronome'], 
+        $row['prodescricao'], 
+        $row['profornecedor'],
+        $row['proquantidade'], 
+        $row['propreco']);
     } 
   
     return $produto;
@@ -127,16 +126,16 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
       
     $produto = array();        
 
-    $query = "SELECT PROCOD, 
-        PRONOME,
-        PRODESCRICAO,
-        PROFORNECEDOR,
-        PROQUANTIDADE,
-        PROPRECO 
+    $query = "SELECT procod, 
+        pronome,
+        prodescricao,
+        profornecedor,
+        proquantidade,
+        propreco 
       FROM 
         " . $this->table_name . "
       WHERE
-        PRONOME like ? ORDER BY PROCOD ASC";
+        pronome like ? ORDER BY procod ASC";
   
     $stmt = $this->conn->prepare($query);
     $parametro = "%" . $palavra . "%";
@@ -178,22 +177,22 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
 
     $produtos = array();
 
-    $query = "SELECT PROCOD, 
-        PRONOME,
-        PRODESCRICAO,
-        PROFORNECEDOR,
-        PROQUANTIDADE,
-        PROPRECO    
+    $query = "SELECT procod, 
+        pronome,
+        prodescricao,
+        profornecedor,
+        proquantidade,
+        propreco    
       FROM 
           " . $this->table_name . "
-          ORDER BY PROCOD ASC";
+          ORDER BY procod ASC";
   
     $stmt = $this->conn->prepare( $query );
     $stmt->execute();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $produtos[] = new Produto($procodigo, 
+        $produtos[] = new Produto($procod, 
           $pronome, 
           $prodescricao, 
           $profornecedor, 

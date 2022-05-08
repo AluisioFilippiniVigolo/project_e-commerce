@@ -20,7 +20,7 @@ echo "<h1> Login : " . $cliente->getLogin() . "</h1>";
 echo "<p> Codigo : " . $cliente->getCodigo() . "</p>";
 echo "<p> Nome : " . $cliente->getNome() . "</p>";
 // botão voltar
-echo "<a href='clientes.php' class='btn btn-primary left-margin'>";
+echo "<a href='mostra_todos_clientes.php' class='btn btn-primary left-margin'>";
 echo "Voltar";
 echo "</a>";
 echo "</section>";

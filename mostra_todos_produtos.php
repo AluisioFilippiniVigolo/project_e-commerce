@@ -33,15 +33,15 @@ if($produtos) {
 			echo "<td>{$produto->getDescricao()}</td>";
 			echo "<td>";
 				// botão para mostrar um cliente
-				echo "<a href='mostra_produto.php?id={$produto->getCodigo()}' class='btn btn-primary left-margin'>";
+				echo "<a href='mostra_produto.php?codigo={$produto->getCodigo()}' class='btn btn-primary left-margin'>";
 					echo "<span class='glyphicon glyphicon-list'></span> Mostra";
 				echo "</a>";
 				// botão para alterar um cliente
-				echo "<a href='modifica_produto.php?id={$produto->getCodigo()}' class='btn btn-info left-margin'>";
+				echo "<a href='modifica_produto.php?codigo={$produto->getCodigo()}' class='btn btn-info left-margin'>";
 				echo "<span class='glyphicon glyphicon-edit'></span> Altera";
 				echo "</a>";
 				// botão para remover um cliente
-				echo "<a href='remove_produtor.php?id={$produto->getCodigo()}' class='btn btn-danger left-margin'";
+				echo "<a href='remove_produtor.php?codigo={$produto->getCodigo()}' class='btn btn-danger left-margin'";
 				echo "onclick=\"return confirm('Tem certeza que quer excluir?')\">";
 				echo "<span class='glyphicon glyphicon-remove'></span> Exclui";
 				echo "</a>";

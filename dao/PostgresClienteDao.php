@@ -120,8 +120,6 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
     $stmt->bindValue(":email", $cliente->getEmail());
     $stmt->bindValue(":cartaocredito", $cliente->getCartaoCredito());
 
-    var_dump($cliente);
-
     // execute the query
     if($stmt->execute()){
         return true;

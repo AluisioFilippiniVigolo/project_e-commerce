@@ -4,10 +4,11 @@ $page_title = "Alteração de Produto";
 include_once "fachada.php";
 include "verifica.php";
 
-$id = @$_GET["codigo"];
+$codigo = @$_GET["codigo"];
 
 $dao = $factory->getProdutoDao();
 $produto = $dao->buscaPorCodigo($codigo);
+
 
 // layout do cabeçalho
 include_once "layout_header.php";

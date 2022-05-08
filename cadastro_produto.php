@@ -24,7 +24,7 @@
             Cadastro Produto
         </div>
         <div class="panel-body">
-          <form action="insere_produto.php" method="POST">
+          <form action="insere_produto.php" method="GET">
             <div class="input-group">
                 <input type="text" name="nome" placeholder="Nome" class="form-control">
             </div>

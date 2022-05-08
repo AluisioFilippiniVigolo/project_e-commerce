@@ -4,7 +4,7 @@ $page_title = "Alteração de Fornecedor";
 include_once "fachada.php";
 include "verifica.php";
 
-$id = @$_GET["codigo"];
+$codigo = @$_GET["codigo"];
 
 $dao = $factory->getFornecedorDao();
 $fornecedor = $dao->buscaPorCodigo($codigo);

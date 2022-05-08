@@ -1,7 +1,7 @@
 <?php
 include_once "fachada.php";
 include "verifica.php";
-$id = @$_GET["codigo"];
+$codigo = @$_GET["codigo"];
 
 $dao = $factory->getProdutoDao();
 $produto = $dao->buscaPorCodigo($codigo);
@@ -20,7 +20,7 @@ echo "<h1> Login : " . $produto->getNome() . "</h1>";
 echo "<p> Codigo : " . $produto->getCodigo() . "</p>";
 echo "<p> Descrição : " . $produto->getDescricao() . "</p>";
 // botão voltar
-echo "<a href='produtos.php' class='btn btn-primary left-margin'>";
+echo "<a href='mostra_todos_produtos.php' class='btn btn-primary left-margin'>";
 echo "Voltar";
 echo "</a>";
 echo "</section>";

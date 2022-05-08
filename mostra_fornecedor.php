@@ -1,7 +1,7 @@
 <?php
 include_once "fachada.php";
 include "verifica.php";
-$id = @$_GET["codigo"];
+$codigo = @$_GET["codigo"];
 
 $dao = $factory->getFornecedorDao();
 $fornecedor = $dao->buscaPorCodigo($codigo);
@@ -20,7 +20,7 @@ echo "<h1> Login : " . $fornecedor->getNome() . "</h1>";
 echo "<p> Codigo : " . $fornecedor->getCodigo() . "</p>";
 echo "<p> Descrição : " . $fornecedor->getDescricao() . "</p>";
 // botão voltar
-echo "<a href='fornecedores.php' class='btn btn-primary left-margin'>";
+echo "<a href='mostra_todos_fornecedores.php' class='btn btn-primary left-margin'>";
 echo "Voltar";
 echo "</a>";
 echo "</section>";
