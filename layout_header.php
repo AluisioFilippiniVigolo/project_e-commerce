@@ -4,7 +4,6 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title><?php echo $page_title; ?></title>
 	<link rel="stylesheet" type="text/css" href="libs/css/custom2.css">
 	
 	<!-- Latest compiled and minified Bootstrap CSS -->
@@ -18,9 +17,16 @@
 <body>
 	<header>
 		<div class="pull-left" id="logo">
-			
+		  <img src="images/Aliexpress_logo.svg"/>	
 		</div>
-		<h1><?=$page_title?></h1>
+
+    <div class="menu_superior">
+      <form action="mostra_todos_produtos.php" method="GET">
+        <input type="text" name="busca" id="barra_busca" placeholder="Buscar" class="form-control">
+        <button type="submit" class="btn btn-success">Buscar</button>
+      </form>
+    </div>
+
 		<div class="pull-right" id="login_info">
 		<?php	
 		include_once "comum.php";

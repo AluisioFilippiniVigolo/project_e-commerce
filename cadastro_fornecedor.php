@@ -17,9 +17,7 @@
 </head>
 
 <body>
-  <section class="container">
-    <div class="col-md-4"></div>
-
+  <section class="container"> 
     <div class="col-md-4">
       <div class="panel panel-default panel-login">
         <div class="panel-heading text-center">

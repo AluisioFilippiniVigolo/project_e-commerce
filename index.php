@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Home';
+  $page_title = "Aliexpress";
   include_once "layout_header.php";
   include_once "layout_footer.php";
 ?>

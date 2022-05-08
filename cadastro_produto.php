@@ -17,41 +17,41 @@
 </head>
 
 <body>
-    <section class="container">
-        <div class="col-md-4">
-            <div class="panel panel-default panel-login">
-                <div class="panel-heading text-center">
-                    Cadastro Produto
-                </div>
-                <div class="panel-body">
-                    <form action="insere_produto.php" method="POST">
-                        <div class="input-group">
-                            <input type="text" name="nome" placeholder="Nome" class="form-control">
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <input type="text" name="descricao" placeholder="Descricao" class="form-control">
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <input type="text" name="fornecedor" placeholder="Fornecedor " class="form-control">
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <input type="text" name="quantidade" placeholder="Quantidade" class="form-control">
-                        </div>
-                        <div class="input-group">
-                            <input type="text" name="preco" placeholder="Preço" class="form-control">
-                        </div>
-                        <br>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-success">Cadastrar</button>
-                        </div>
-                    </form>6
-                </div>
-            </div>
+  <section class="container">
+    <div class="col-md-4">
+      <div class="panel panel-default panel-login">
+        <div class="panel-heading text-center">
+            Cadastro Produto
         </div>
-                </section>
+        <div class="panel-body">
+          <form action="insere_produto.php" method="POST">
+            <div class="input-group">
+                <input type="text" name="nome" placeholder="Nome" class="form-control">
+            </div>
+            <br>
+            <div class="input-group">
+                <input type="text" name="descricao" placeholder="Descricao" class="form-control">
+            </div>
+            <br>
+            <div class="input-group">
+                <input type="text" name="fornecedor" placeholder="Fornecedor " class="form-control">
+            </div>
+            <br>
+            <div class="input-group">
+                <input type="text" name="quantidade" placeholder="Quantidade" class="form-control">
+            </div>
+            <div class="input-group">
+                <input type="text" name="preco" placeholder="Preço" class="form-control">
+            </div>
+            <br>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">Cadastrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
                 <script src="js/bootstrap.min.js"></script>
 </body>

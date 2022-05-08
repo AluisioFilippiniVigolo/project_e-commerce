@@ -58,7 +58,7 @@
 	</aside>
 
 	<footer>
-		<p>Footer</p>
+		<p id="mensagem_rodape">Proteção de Propriedade Intelectual - Política de Privacidade - Mapa do Site - Condições de Uso - Guia de Informações Jurídicas para o Usuário ©️ 2010-2022 AliExpress.com. Todos os direitos reservados.</p>
 	</footer>
 
 </body>
