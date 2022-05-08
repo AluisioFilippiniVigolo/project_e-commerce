@@ -10,12 +10,12 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
   public function insere($produto) {
 
     $query = "INSERT INTO " . $this->table_name . "
-      (PROCOD,
-      PRONOME, 
-      PRODESCRICAO,
-      PROFORNECEDOR,
-      PROQUANTIDADE,
-      PROPRECO)
+      (procod,
+      pronome, 
+      prodescricao,
+      profornecedor,
+      proquantidade,
+      propreco)
       VALUES (:codigo, 
         :nome, 
         :descricao, 
