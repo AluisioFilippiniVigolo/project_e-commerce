@@ -190,7 +190,7 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
   
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $fornecedores[] = new Fornecedor($codigo, 
+        $fornecedores[] = new Fornecedor($forcod, 
           $fornome, 
           $fordescricao, 
           $forrua, 

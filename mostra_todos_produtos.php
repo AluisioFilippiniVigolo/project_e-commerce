@@ -10,10 +10,21 @@ include_once "fachada.php";
 
 echo "<section>";
 
-// procura usuários
-
 $dao = $factory->getProdutoDao();
-$produtos = $dao->buscaTodos();
+$palavra = @$_GET["palavra"];
+
+if($palavra == '') {
+  $produtos = $dao->buscaTodos();
+}
+else {
+  $produtos = $dao->buscaPorNome($palavra);
+}
+
+echo "<form action='mostra_todos_produtos.php' method='GET'>";
+echo "<input type='text' name='palavra' id='barra_busca' placeholder='Buscar por nome de produto...' class='form-control'>";
+echo "<button type='submit' class='btn btn-success'>Buscar</button>";
+echo "<button type='submit' class='btn btn-light'>Limpar</button>";
+echo "</form>";
 
 // display the products if there are any
 if($produtos) {

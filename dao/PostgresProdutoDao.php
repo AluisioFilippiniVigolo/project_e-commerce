@@ -124,7 +124,7 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
 
   public function buscaPorNome($palavra) {
       
-    $produto = array();        
+    $produtos = array();        
 
     $query = "SELECT procod, 
         pronome,
@@ -144,7 +144,7 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
   
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $produtos[] = new Produto($procodigo, 
+        $produtos[] = new Produto($procod, 
           $pronome, 
           $prodescricao, 
           $profornecedor, 
@@ -152,7 +152,7 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
           $propreco); 
     }
 
-    return $produto;
+    return $produtos;
   }
 
   public function contaTodos() {
