@@ -1,0 +1,7 @@
+.button_orange {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background: linear-gradient(90deg,#ff640e,#ff3000);
+    color: #fff;
+    border-width: 0;
+}
