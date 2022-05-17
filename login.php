@@ -11,72 +11,44 @@
     <title>Login</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/my_css.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
 <body>
-    <div class="container" >
-        <div class="col-md-4">
-            <div class="row">
-                <div style="margin-left:87%; margin-top:165px">
-                    <div class="container-form">
-                    
-                        <img style= "margin-left:85px"src="images/Aliexpress_logo.svg"/>
-                        <form  class="form-horizontal" action="executa_login.php" method="POST">
-                       
-                            <input type="text" name="login" placeholder="Usuário" class="form-control i-input" autocomplete="off">
-                            <br>
-                            <input type="password" name="senha" placeholder="Senha" class="form-control i-input" autocomplete="off">
-                            <br>
-                            <div class="text-center">
-                                <button class="button_orange" style="width: 100%; border-radius: 10px" type="submit" class="btn btn-success"><b>Iniciar sessão</b></button>
-                            </div>
-                        </form>
-                        
-                        </br>
-                        <span>Não possui conta?</span> &nbsp;<a href="cadastro_cliente.php">Cadastre-se</a>
+        <div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" action="executa_login.php" method="POST">
+					
+					<span class="login100-form-title p-b-48">
+                        <img style="margin-left:5%; width: 85%"src="images/Aliexpress_logo.svg"/>
+					</span>
 
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+						<input type="text" name="login" placeholder="Usuário">
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input type="password" name="senha" placeholder="Senha">
+					</div>
+
+					<div class="text-center">
+                         <button class="button_orange" style="width: 100%; border-radius: 10px" type="submit" class="btn btn-success"><b>Iniciar sessão</b></button>
                     </div>
-                
-                </div>      
-            </div>
-        </div>  
-        
-    </div>
+                </form>
+                </br>
+                <span>Não possui conta?</span> &nbsp;<a href="cadastro_cliente.php">Cadastre-se</a>
 
-    <!-- <div class="container">
-        
-        <div class="col-md-4">
-            <div class="panel panel-default panel-login">
-                <div class="panel-heading text-center">
-                    LOGIN
-                </div>
-                <div class="panel-body">
-                    <form action="executa_login.php" method="POST">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-user"></i>
-                            </span>
-                            <input type="text" name="login" placeholder="Usuário" class="form-control">
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="glyphicon glyphicon-lock"></i>
-                            </span>
-                            <input type="password" name="senha" placeholder="Senha" class="form-control">
-                        </div>
-                        <br>
-                        <p><a>Esqueci minha senha</a></p>
-                        <p><a href="cadastro_cliente.php"> Primeiro acesso?</a></p>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-success">ENTRAR</button>
-                        </div>
-                    </form>
-                </div>
             </div>
-
         </div>
-    </div> -->
+
+
+
+
+    
 </body>
 
 </html>
