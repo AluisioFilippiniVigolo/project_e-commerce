@@ -16,39 +16,36 @@
 </head>
 
 <body>
-        <div class="container-login100">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form" action="executa_login.php" method="POST">
+    <div class="container-login100">
+		<div class="wrap-login100">
+			<form class="login100-form validate-form" action="executa_login.php" method="POST">
 					
-					<span class="login100-form-title p-b-48">
-                        <img style="margin-left:5%; width: 85%"src="images/Aliexpress_logo.svg"/>
+				<span class="login100-form-title p-b-48">
+                    <img style="margin-left:5%; width: 85%" src="images/Aliexpress_logo.svg"/>
+				</span>
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+					<input type="text" name="login" placeholder="Usuário">
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Enter password">
+					<span class="btn-show-pass">
+						<i class="zmdi zmdi-eye"></i>
 					</span>
+					<input type="password" name="senha" placeholder="Senha">
+				</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input type="text" name="login" placeholder="Usuário">
-					</div>
+				<div class="text-center">
+                    <button class="button_orange" style="width: 100%; border-radius: 10px" type="submit" class="btn btn-success"><b>Iniciar sessão</b></button>
+                </div>
+            </form>
+            </br>
+            <span style="margin-left:12%">Não possui conta?</span> &nbsp;<a href="cadastro_cliente.php">Cadastre-se</a>
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
-						</span>
-						<input type="password" name="senha" placeholder="Senha">
-					</div>
-
-					<div class="text-center">
-                         <button class="button_orange" style="width: 100%; border-radius: 10px" type="submit" class="btn btn-success"><b>Iniciar sessão</b></button>
-                    </div>
-                </form>
-                </br>
-                <span>Não possui conta?</span> &nbsp;<a href="cadastro_cliente.php">Cadastre-se</a>
-
-            </div>
         </div>
+    </div>
 
 
-
-
-    
 </body>
 
 </html>
