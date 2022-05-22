@@ -8,8 +8,9 @@ class Produto {
   private $fornecedor;
   private $quantidade;
   private $preco;
+  private $imagem;
 
-  public function __construct($codigo, $nome, $descricao, $fornecedor, $quantidade, $preco)
+  public function __construct($codigo, $nome, $descricao, $fornecedor, $quantidade, $preco, $imagem)
   {
     $this->codigo=$codigo;
     $this->nome=$nome;
@@ -17,6 +18,7 @@ class Produto {
     $this->fornecedor=$fornecedor;
     $this->quantidade=$quantidade;
     $this->preco=$preco;
+    $this->imagem=$imagem;
   }
 
   public function getCodigo(){return $this->codigo;}
@@ -36,5 +38,8 @@ class Produto {
 
   public function getPreco(){return $this->preco;}
   public function setPreco($preco){$this->preco=$preco;}
+
+  public function getImagem(){return $this->imagem;}
+  public function setImagem($imagem){$this->imagem=$imagem;}
 }
 ?>

@@ -82,20 +82,23 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
 
     $query = "UPDATE " . $this->table_name . "
     SET
-    fornome = :nome,
-    fordescricao = :descricao,
-    forrua = :rua,
-    fornumero = :numero,
-    forcomplemento = :complemento,
-    forbairro = :bairro,
-    forcep = :cep,
-    forcidade = :cidade,
-    forestado = :estado,
-    fortelefone = :telefone, 
-    foremail = :email";
+      fornome = :nome,
+      fordescricao = :descricao,
+      forrua = :rua,
+      fornumero = :numero,
+      forcomplemento = :complemento,
+      forbairro = :bairro,
+      forcep = :cep,
+      forcidade = :cidade,
+      forestado = :estado,
+      fortelefone = :telefone, 
+      foremail = :email
+    WHERE
+      forcod = :codigo";
 
     $stmt = $this->conn->prepare($query);
 
+    $stmt->bindValue(":codigo", $fornecedor->getCodigo());
     $stmt->bindValue(":nome", $fornecedor->getNome());
     $stmt->bindValue(":descricao", $fornecedor->getDescricao());
     $stmt->bindValue(":rua", $fornecedor->getRua());

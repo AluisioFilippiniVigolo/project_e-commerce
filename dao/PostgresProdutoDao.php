@@ -14,12 +14,14 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
       prodescricao,
       profornecedor,
       proquantidade,
-      propreco)
+      propreco,
+      proimagem)
       VALUES (:nome, 
         :descricao, 
         :fornecedor, 
         :quantidade, 
-        :preco)";
+        :preco,
+        :imagem)";
 
     $stmt = $this->conn->prepare($query);
 
@@ -29,6 +31,7 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
     $stmt->bindValue(":fornecedor", $produto->getFornecedor());
     $stmt->bindValue(":quantidade", $produto->getQuantidade());
     $stmt->bindValue(":preco", $produto->getPreco());
+    $stmt->bindValue(":imagem", $produto->getImagem());
 
     var_dump($stmt);
 
@@ -70,15 +73,19 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
       prodescricao = :descricao,
       profornecedor = :fornecedor,
       proquantidade = :quantidade,
-      propreco = :preco";
+      propreco = :preco,
+      proimagem = :imagem
+    WHERE procod = :codigo";
 
     $stmt = $this->conn->prepare($query);
 
+    $stmt->bindValue(":codigo", $produto->getCodigo());
     $stmt->bindValue(":nome", $produto->getNome());
     $stmt->bindValue(":descricao", $produto->getDescricao());
     $stmt->bindValue(":fornecedor", $produto->getFornecedor());
     $stmt->bindValue(":quantidade", $produto->getQuantidade());
     $stmt->bindValue(":preco", $produto->getPreco());
+    $stmt->bindValue(":imagem", $produto->getImagem());
 
     // execute the query
     if($stmt->execute()){
@@ -97,7 +104,8 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
         prodescricao,
         profornecedor,
         proquantidade,
-        propreco 
+        propreco,
+        proimagem 
       FROM 
         " . $this->table_name . "
       WHERE
@@ -116,7 +124,8 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
         $row['prodescricao'], 
         $row['profornecedor'],
         $row['proquantidade'], 
-        $row['propreco']);
+        $row['propreco'],
+        $row['proimagem']);
     } 
   
     return $produto;
@@ -131,7 +140,8 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
         prodescricao,
         profornecedor,
         proquantidade,
-        propreco 
+        propreco,
+        proimagem 
       FROM 
         " . $this->table_name . "
       WHERE
@@ -149,7 +159,8 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
           $prodescricao, 
           $profornecedor, 
           $proquantidade, 
-          $propreco); 
+          $propreco,
+          $proimagem); 
     }
 
     return $produtos;
@@ -182,7 +193,8 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
         prodescricao,
         profornecedor,
         proquantidade,
-        propreco    
+        propreco,
+        proimagem    
       FROM 
           " . $this->table_name . "
           ORDER BY procod ASC";
@@ -197,7 +209,8 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
           $prodescricao, 
           $profornecedor, 
           $proquantidade, 
-          $propreco); 
+          $propreco,
+          $proimagem); 
       }
     return $produtos;
   }

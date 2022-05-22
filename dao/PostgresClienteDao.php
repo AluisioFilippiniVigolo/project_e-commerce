@@ -87,19 +87,19 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
 
     $query = "UPDATE " . $this->table_name . "
     SET 
-    clinome = :nome,
-    clilogin = :login,
-    clisenha = :senha,
-    clirua = :rua,
-    clinumero = :numero,
-    clicomplemento = :complemento,
-    clibairro = :bairro,
-    clicep = :cep,
-    clicidade = :cidade,
-    cliestado = :estado,
-    clitelefone = :telefone, 
-    cliemail = :email,
-    clicartaocredito = :cartaocredito
+      clinome = :nome,
+      clilogin = :login,
+      clisenha = :senha,
+      clirua = :rua,
+      clinumero = :numero,
+      clicomplemento = :complemento,
+      clibairro = :bairro,
+      clicep = :cep,
+      clicidade = :cidade,
+      cliestado = :estado,
+      clitelefone = :telefone, 
+      cliemail = :email,
+      clicartaocredito = :cartaocredito
     WHERE clicod = :codigo";
 
     $stmt = $this->conn->prepare($query);

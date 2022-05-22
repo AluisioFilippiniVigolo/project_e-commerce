@@ -1,6 +1,7 @@
 <?php
 include_once "fachada.php";
 
+$codigo = @$_GET["codigo"];
 $nome = @$_GET["nome"];
 $descricao = @$_GET["descricao"];
 $rua = @$_GET["rua"];
@@ -13,7 +14,7 @@ $estado = @$_GET["estado"];
 $telefone = @$_GET["telefone"];
 $email = @$_GET["email"];
 
-$fornecedor = new Fornecedor(null, $nome, $descricao, $rua, $numero, $complemento, $bairro, $cep, $cidade, $estado, $telefone, $email);
+$fornecedor = new Fornecedor($codigo, $nome, $descricao, $rua, $numero, $complemento, $bairro, $cep, $cidade, $estado, $telefone, $email);
 $dao = $factory->getFornecedorDao();
 $dao->altera($fornecedor);
 

@@ -40,8 +40,15 @@
             <div class="input-group">
                 <input type="text" name="quantidade" placeholder="Quantidade" class="form-control">
             </div>
+            <br>
             <div class="input-group">
                 <input type="text" name="preco" placeholder="Preço" class="form-control">
+            </div>
+            <br>
+            <div class="input-group">
+                <input type="file" id="Arquivo" name="arquivo" class="form-control" multiple />
+                <button id="upload" class="btn btn-success">Upload</button>
+                <p id="msg"></p>
             </div>
             <br>
             <div class="text-center">
@@ -52,8 +59,34 @@
       </div>
     </div>
   </section>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-                <script src="js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+
+      <script type="text/javascript">
+      $(document).ready(function (e) {
+          $('#Arquivo').on('change', function () {
+              var file_data = $('#Arquivo').prop('files')[0];
+              //alert(file_data);
+              var form_data = new FormData();
+              form_data.append('Arquivo', file_data);
+              $.ajax({
+                  url: 'http://localhost/project_e-commerce/enviar_ajax.php', // point to server-side controller method
+                  dataType: 'text', // what to expect back from the server
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: form_data,
+                  type: 'post',
+                  success: function (response) {
+                      $('#msg').html(response); // display success response from the server
+                  },
+                  error: function (response) {
+                      $('#msg').html(response); // display error response from the server
+                  }
+              });
+          });
+      });
+  </script>
 </body>
 
 </html>
