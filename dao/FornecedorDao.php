@@ -7,6 +7,7 @@ interface FornecedorDao {
     public function altera($fornecedor);
     public function buscaPorCodigo($codigo);
     public function buscaPorNome($palavra);
+    public function buscaTodosPaginado($palavra, $inicio, $quantos);
     public function buscaTodos();
     public function contaTodos();
 }

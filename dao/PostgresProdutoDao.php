@@ -166,6 +166,33 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
     return $produtos;
   }
 
+  public function buscaTodosPaginado($palavra, $inicio, $quantos) {
+
+    $query = "SELECT procod, 
+        pronome,
+        prodescricao,
+        profornecedor,
+        proquantidade,
+        propreco,
+        proimagem 
+    FROM 
+      " . $this->table_name;
+
+    if($palavra != '') {
+      $query .= " WHERE UPPER(pronome) LIKE '%" . str_replace(' ', '%', strtoupper($palavra)) . "%'";
+    }
+
+    $query .= " ORDER BY procod ASC 
+    LIMIT ? OFFSET ?";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindValue(1, $quantos);
+    $stmt->bindValue(2, $inicio);
+    $stmt->execute();
+
+    return $stmt->fetchAll();
+  }
+
   public function contaTodos() {
 
     $quantos = 0;

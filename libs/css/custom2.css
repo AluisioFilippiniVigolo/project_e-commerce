@@ -67,12 +67,6 @@ div.col-md-4 {
   border-bottom-left-radius: 5px;
 }
 
-#barra_busca {
-  width: 50%;
-  display: inline;
-  margin: auto;
-}
-
 #logotipo {
   display: inline-grid;
   width: 15%;

@@ -210,6 +210,38 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
     return $fornecedores;
   }
 
+  public function buscaTodosPaginado($palavra, $inicio, $quantos) {
+
+    $query = "SELECT forcod, 
+        fornome, 
+        fordescricao,
+        forrua,
+        fornumero,
+        forcomplemento,
+        forbairro,
+        forcep,
+        forcidade,
+        forestado,
+        fortelefone,
+        foremail  
+    FROM 
+      " . $this->table_name;
+
+    if($palavra != '') {
+      $query .= " WHERE UPPER(fornome) LIKE '%" . str_replace(' ', '%', strtoupper($palavra)) . "%'";
+    }
+
+    $query .= " ORDER BY forcod ASC 
+    LIMIT ? OFFSET ?";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindValue(1, $quantos);
+    $stmt->bindValue(2, $inicio);
+    $stmt->execute();
+
+    return $stmt->fetchAll();
+  }
+
   public function contaTodos() {
 
     $quantos = 0;

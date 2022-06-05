@@ -251,6 +251,44 @@ class PostgresClienteDao extends PostgresDao implements ClienteDao {
     return $clientes;
   }
 
+  public function buscaTodosPaginado($palavra, $inicio, $quantos) {
+
+    $query = "SELECT clicod, 
+        clinome,
+        clilogin,
+        clisenha,
+        clirua,
+        clinumero,
+        clicomplemento, 
+        clibairro,
+        clicep,
+        clicidade,
+        cliestado,
+        clitelefone,
+        cliemail,
+        clicartaocredito 
+    FROM 
+      " . $this->table_name;
+
+    if($palavra != '') {
+      $query .= " WHERE UPPER(clinome) LIKE '%" . str_replace(' ', '%', strtoupper($palavra)) . "%'";
+    }
+    
+    $query .= " ORDER BY clicod ASC 
+    LIMIT ? OFFSET ?";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindValue(1, $quantos);
+    $stmt->bindValue(2, $inicio);
+    $stmt->execute();
+
+    return $stmt->fetchAll();
+  }
+
+  public function buscaTodosPaginadoJSON($palavra, $inicio, $quantos) {
+
+  }
+
   public function contaTodos() {
 
     $quantos = 0;

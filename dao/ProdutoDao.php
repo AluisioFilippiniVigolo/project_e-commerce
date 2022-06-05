@@ -7,6 +7,7 @@ interface ProdutoDao {
     public function altera($produto);
     public function buscaPorCodigo($codigo);
     public function buscaPorNome($palavra);
+    public function buscaTodosPaginado($palavra, $inicio, $quantos);
     public function buscaTodos();
     public function contaTodos();
 }
