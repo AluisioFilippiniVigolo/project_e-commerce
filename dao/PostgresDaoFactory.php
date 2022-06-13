@@ -6,11 +6,11 @@ include_once('FachadaPostgressDao.php');
 class PostgresDaofactory extends DaoFactory {
 
     // specify your own database credentials
-    private $host = "localhost";
-    private $db_name = "project_e-commerce";
+    private $host = "kesavan.db.elephantsql.com";
+    private $db_name = "e-commerce";
     private $port = "5432";
-    private $username = "postgres";
-    private $password = "admin";
+    private $username = "gkhmvzjs";
+    private $password = "EsF7MoiM9wsf5P-79-5XJOXHJ1V-ONiz";
     public $conn;
   
     // get the database connection
@@ -21,7 +21,7 @@ class PostgresDaofactory extends DaoFactory {
         try{
             //$this->conn = new PDO("pgsql:host=" . $this->host . ";port=" . $this->port . ";dbname=" . $this->db_name, $this->username, $this->password);
             //$this->conn = new PDO("pgsql:host=" . $this->host . ";port=" . $this->port . ";dbname=" . $this->db_name, $this->username, $this->password);
-            $this->conn = new PDO("pgsql:host=localhost;port=5432;dbname=project_e-commerce", $this->username, $this->password);
+            $this->conn = new PDO("pgsql:host=kesavan.db.elephantsql.com;port=5432;dbname=e-commerce", $this->username, $this->password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
       }catch(PDOException $exception){
