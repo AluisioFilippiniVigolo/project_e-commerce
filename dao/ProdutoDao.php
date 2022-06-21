@@ -10,5 +10,7 @@ interface ProdutoDao {
     public function buscaTodosPaginado($palavra, $inicio, $quantos);
     public function buscaTodos();
     public function contaTodos();
+    public function buscaProdutosJSON();
+    public function buscaProdutoJSON($codigo);
 }
 ?>

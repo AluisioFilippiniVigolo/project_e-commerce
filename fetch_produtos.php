@@ -27,6 +27,7 @@ $output = '
     <th>Código</th>
     <th>Nome</th>
     <th>Descrição</th>
+    <th></th>
   </tr>
 ';
 if($total_data > 0)
@@ -181,6 +182,11 @@ $output .= '
 
 </div>
 ';
+
+
+
+
+
 
 echo $output;
 

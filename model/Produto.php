@@ -41,5 +41,10 @@ class Produto {
 
   public function getImagem(){return $this->imagem;}
   public function setImagem($imagem){$this->imagem=$imagem;}
+
+  public function getDadosParaJSON() {
+    $data = ['codigo' => $this->codigo, 'nome' => $this->nome, 'descricao' => $this->descricao, 'fornecedor' => $this->fornecedor, 'quantidade' => $this->quantidade, 'preco' => $this->preco, 'imagem' => $this->imagem];
+    return $data;
+}
 }
 ?>

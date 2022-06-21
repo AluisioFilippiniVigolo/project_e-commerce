@@ -10,17 +10,88 @@ include_once "fachada.php";
 
 ?>
 
+<script 	  type="text/javascript" src="js/jquery-3.6.0.js">
+</script>
+
+<script 	  type="text/javascript" src="js/bootstrap.min.js">
+</script>
+
+<script 	  type="text/javascript" src="js/my_script.js">
+</script>
+
 <section>
 
 <div class="form-group">
   <input type="text" name="search_box" id="search_box" class="form-control" placeholder="Digite aqui letras do nome para pesquisar" />
 </div>
-<div class="table-responsive" id="dynamic_content">
-  
-</div>
+
+<div class="table-responsive" id="div_produtos"></div>
 
 </br>
 
+<div class="text-center quadro">
+  <a id="botaoNovoProduto" href="#produtoForm" class="btn btn-default btn-primary btn-rounded mb-4" 
+  data-toggle="modal" data-target="#produtoForm">Novo produto</a>
+</div>
+
+</section>
+
+<div class="modal fade" id="produtoForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Produtos</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+	   
+      <div class="md-form mb-5">
+            <i class="fas fa-user prefix grey-text"></i>
+            <label data-error="wrong" data-success="right" for="codigo">Código</label>
+            <input type="text" id="codigo" class="form-control validate">
+      </div>
+
+      <div class="md-form mb-5">
+            <i class="fas fa-user prefix grey-text"></i>
+            <label data-error="wrong" data-success="right" for="nome">Nome</label>
+            <input type="text" id="nome" class="form-control validate">
+      </div>
+
+      <div class="md-form mb-5">
+            <i class="fas fa-user prefix grey-text"></i>
+            <label data-error="wrong" data-success="right" for="descricao">Descricao</label>
+            <input type="text" id="descricao" class="form-control validate">
+      </div>
+      
+      <div class="md-form mb-5">
+            <i class="fas fa-user prefix grey-text"></i>
+            <label data-error="wrong" data-success="right" for="fornecedor">Fornecedor</label>
+            <input type="text" id="fornecedor" class="form-control validate">
+      </div>
+
+      <div class="md-form mb-5">
+            <i class="fas fa-user prefix grey-text"></i>
+            <label data-error="wrong" data-success="right" for="quantidade">Quantidade</label>
+            <input type="text" id="quantidade" class="form-control validate">
+      </div>
+
+      <div class="md-form mb-5">
+            <i class="fas fa-user prefix grey-text"></i>
+            <label data-error="wrong" data-success="right" for="preco">Preço</label>
+            <input type="text" id="preco" class="form-control validate">
+      </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-primary" onClick="salvaProduto();">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!--
 <script>
   $(document).ready(function(){
 
@@ -53,7 +124,7 @@ include_once "fachada.php";
   });
 </script>
 
-</section>
+-->
 
 <?php
 // layout do rodapé

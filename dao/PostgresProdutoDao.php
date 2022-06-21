@@ -239,7 +239,25 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
           $propreco,
           $proimagem); 
       }
-    return $produtos;
+    return $produtos; 
+  }
+
+  public function buscaProdutosJSON() {
+    $produtos = $this->buscaTodos();
+    $produtosJSON = array();
+    foreach ($produtos as $produto) {
+        $produtosJSON[] = $produto->getDadosParaJSON(); 
+    }
+    return stripslashes(json_encode($produtosJSON,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+  }
+
+  public function buscaProdutoJSON($codigo) {
+      $produto = $this->buscaPorCodigo($codigo);
+      if($produto!=null) {
+          return stripslashes(json_encode($produto->getDadosParaJSON(),JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+      } else {
+          return null;
+      }
   }
 
 }
