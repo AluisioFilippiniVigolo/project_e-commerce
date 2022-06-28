@@ -26,47 +26,47 @@
         <div class="panel-body">
           <form action="insere_fornecedor.php" method="GET">
             <div class="input-group">
-              <input type="text" name="nome" placeholder="Nome" class="form-control">
+              <input type="text" name="nome" placeholder="Nome" class="form-control" autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-              <input type="text" name="descricao" placeholder="Descrição" class="form-control">
+              <input type="text" name="descricao" placeholder="Descrição" class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-              <input type="text" name="rua" placeholder="Rua" class="form-control">
+              <input type="text" name="rua" placeholder="Rua" class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-              <input type="text" name="numero" placeholder="Número" class="form-control">
+              <input type="text" name="numero" placeholder="Número" class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-              <input type="text" name="complemento" placeholder="Complemento" class="form-control">
+              <input type="text" name="complemento" placeholder="Complemento" class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-              <input type="text" name="bairro" placeholder="Bairro" class="form-control">
+              <input type="text" name="bairro" placeholder="Bairro" class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-              <input type="text" name="cep" placeholder="Cep" class="form-control">
+              <input type="text" name="cep" placeholder="Cep" class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-              <input type="text" name="cidade" placeholder="Cidade" class="form-control">
+              <input type="text" name="cidade" placeholder="Cidade" class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-              <input type="text" name="estado" placeholder="Estado" class="form-control">
+              <input type="text" name="estado" placeholder="Estado" class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-              <input type="text" name="telefone" placeholder="Telefone " class="form-control">
+              <input type="text" name="telefone" placeholder="Telefone " class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-              <input type="text" name="email" placeholder="Email" class="form-control">
+              <input type="text" name="email" placeholder="Email" class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="text-center">

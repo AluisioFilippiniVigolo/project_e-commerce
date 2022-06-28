@@ -26,27 +26,27 @@
         <div class="panel-body">
           <form action="insere_produto.php" method="GET">
             <div class="input-group">
-                <input type="text" name="nome" placeholder="Nome" class="form-control">
+                <input type="text" name="nome" placeholder="Nome" class="form-control" autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-                <input type="text" name="descricao" placeholder="Descricao" class="form-control">
+                <input type="text" name="descricao" placeholder="Descricao" class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-                <input type="text" name="fornecedor" placeholder="Fornecedor " class="form-control">
+                <input type="text" name="fornecedor" placeholder="Fornecedor " class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-                <input type="text" name="quantidade" placeholder="Quantidade" class="form-control">
+                <input type="text" name="quantidade" placeholder="Quantidade" class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-                <input type="text" name="preco" placeholder="Preço" class="form-control">
+                <input type="text" name="preco" placeholder="Preço" class="form-control"autocomplete="off">
             </div>
             <br>
             <div class="input-group">
-                <input type="file" id="Arquivo" name="arquivo" class="form-control" multiple />
+                <input type="file" id="Arquivo" name="arquivo" autocomplete="off" class="form-control" multiple />
                 <button id="upload" class="btn btn-success">Upload</button>
                 <p id="msg"></p>
             </div>
