@@ -21,7 +21,7 @@
 			<form class="login100-form validate-form" action="executa_login.php" method="POST">
 					
 				<span class="login100-form-title p-b-48">
-                    <img style="margin-left:5%; width: 85%" src="images/Aliexpress_logo.svg"/>
+                    <img style="margin-left:5%; width: 85%" src="images/logotipo.png"/>
 				</span>
 
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
