@@ -6,7 +6,7 @@ $descricao = @$_GET["descricao"];
 $fornecedor = @$_GET["fornecedor"];
 $quantidade = @$_GET["quantidade"];
 $preco = @$_GET["preco"];
-$imagem = @$_GET["imagem"];
+$imagem = @$_GET["arquivo"];
 
 $produto = new Produto(null, $nome, $descricao, $fornecedor, $quantidade, $preco, $imagem);
 $dao = $factory->getProdutoDao();

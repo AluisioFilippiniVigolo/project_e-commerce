@@ -5,7 +5,7 @@ require "fachada.php";
 
 $dao = $factory->getProdutoDao(); 
 
-$request_method=$_SERVER["REQUEST_METHOD"];
+$request_method = $_SERVER["REQUEST_METHOD"];
 	
 switch($request_method)
  {
@@ -32,8 +32,8 @@ switch($request_method)
     $codigo = $data["codigo"];
     $nome = $data["nome"];
     $descricao = $data["descricao"];
-    $quantidade = @$data["quantidade"];
-    $preco = @$data["preco"];
+    $quantidade = $data["quantidade"];
+    $preco = $data["preco"];
     $produto = new Produto(null, $nome, $descricao, $fornecedor, $quantidade, $preco, $imagem);
     $dao->insere($produto);
     http_response_code(201); // 201 Created
