@@ -20,7 +20,7 @@
   <section class="container">
     <div class="col-md-4">
       <div class="panel panel-default panel-login">
-        <div class="panel-heading text-center">
+        <div class="panel-heading text-center"> 
             Cadastro Produto
         </div>
         <div class="panel-body">
@@ -46,7 +46,7 @@
             </div>
             <br>
             <div class="input-group">
-                <input type="file" id="Arquivo" name="arquivo" class="form-control" multiple />
+                <input type="file" id="arquivo" name="arquivo" class="form-control" multiple />
                 <button id="upload" class="btn btn-success">Upload</button>
                 <p id="msg"></p>
             </div>
