@@ -6,13 +6,8 @@ include_once('FachadaPostgressDao.php');
 class PostgresDaofactory extends DaoFactory {
 
     // specify your own database credentials
-<<<<<<< HEAD
     private $host = "localhost";
     private $db_name = "project_e-commerce";
-=======
-    private $host = "kesavan.db.elephantsql.com";
-    private $db_name = "gkhmvzjs";
->>>>>>> 89ff285f20b45fa981048b4697ae0b25829ce90b
     private $port = "5432";
     private $username = "postgres";
     private $password = "admin";

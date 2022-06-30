@@ -29,7 +29,7 @@ include_once "fachada.php";
 
 </br>
 
-<div class="text-center quadro">
+<div class="text-center quadro"> 
   <a id="botaoNovoProduto" href="#produtoForm" class="btn btn-default btn-primary btn-rounded mb-4" 
   data-toggle="modal" data-target="#produtoForm">Novo produto</a>
 </div>
@@ -82,6 +82,11 @@ include_once "fachada.php";
             <label data-error="wrong" data-success="right" for="preco">Preço</label>
             <input type="text" id="preco" class="form-control validate">
       </div>
+      </br>
+      <div class="md-form mb-5">
+            <input type="file" id="arquivo" name="arquivo" class="form-control" multiple />
+            <p id="msg"></p>
+      </div>
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
@@ -91,6 +96,30 @@ include_once "fachada.php";
   </div>
 </div> 
 
+<script type="text/javascript">
+      $(document).ready(function (e) {
+          $('#arquivo').on('change', function () {
+              var file_data = $('#arquivo').prop('files')[0];
+              var form_data = new FormData();
+              form_data.append('arquivo', file_data);
+              $.ajax({
+                  url: 'http://localhost/project_e-commerce/enviar_ajax.php',
+                  dataType: 'text',
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: form_data,
+                  type: 'post',
+                  success: function (response) {
+                      $('#msg').html(response);
+                  },
+                  error: function (response) {
+                      $('#msg').html(response);
+                  }
+              });
+          });
+      });
+</script>
 <!--
 <script>
   $(document).ready(function(){

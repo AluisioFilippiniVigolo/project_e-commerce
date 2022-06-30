@@ -7,7 +7,7 @@ $dao = $factory->getProdutoDao();
 
 $request_method = $_SERVER["REQUEST_METHOD"];
 	
-switch($request_method)
+switch($request_method) 
  {
  case 'GET':
     if(!empty($_GET["codigo"]))
@@ -33,7 +33,9 @@ switch($request_method)
     $nome = $data["nome"];
     $descricao = $data["descricao"];
     $quantidade = $data["quantidade"];
+    $fornecedor = $data["fornecedor"];
     $preco = $data["preco"];
+    $imagem = $data["arquivo"];
     $produto = new Produto(null, $nome, $descricao, $fornecedor, $quantidade, $preco, $imagem);
     $dao->insere($produto);
     http_response_code(201); // 201 Created
@@ -50,7 +52,8 @@ switch($request_method)
             $produto->setDescricao($data["descricao"]);
             $produto->setQuantidade($data["quantidade"]);
             $produto->setPreco($data["preco"]);
-            $dao->altera($turma);
+            $produto->setImagem($data["arquivo"]);
+            $dao->altera($produto);
             http_response_code(200); // 200 OK
        } else {
         http_response_code(404); // 404 Not Found

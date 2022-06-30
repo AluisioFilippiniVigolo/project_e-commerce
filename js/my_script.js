@@ -13,7 +13,7 @@ function salvaProduto() {
   var codigo = $('#codigo').val();
 
   if(codigo==null || codigo == "" || codigo == undefined) {
-      insereProduto();
+      insereProduto(); 
   } else {
       alteraProduto();
   }
@@ -27,7 +27,8 @@ function insereProduto() {
       descricao : $('#descricao').val(),
       fornecedor : $('#fornecedor').val(),
       quantidade : $('#quantidade').val(),
-      preco : $('#preco').val()
+      preco : $('#preco').val(),
+      imagem : $('#arquivo').val()
   }
 
   $.ajax
@@ -45,6 +46,7 @@ function insereProduto() {
           $('#fornecedor').val("");
           $('#quantidade').val("");
           $('#preco').val("");
+          $('#arquivo').val("");
           buscaProdutos($);
       }
   });
@@ -61,14 +63,16 @@ function alteraProduto() {
     descricao : $('#descricao').val(),
     fornecedor : $('#fornecedor').val(),
     quantidade : $('#quantidade').val(),
-    preco : $('#preco').val()
+    preco : $('#preco').val(),
+    imagem : $('#arquivo').val()
   }
 
   $.ajax
   ({
       //Configurações
       type: 'PUT',
-      url: 'produto/' + produto.codigo,
+      url: 'produto?codigo=' + produto.codigo,
+      //url: 'produto/' + produto.codigo,
       dataType: "json",
       data : JSON.stringify(produto),
 
@@ -94,7 +98,8 @@ function removeProduto(codigo) {
   ({
       type: 'DELETE',
       dataType: 'json',
-      url: 'produto/' + codigo,
+      url: 'produto?codigo=' + codigo,
+      //url: 'produto/' + codigo,
       complete: function (msg)
       {
           buscaProdutos($);
@@ -106,7 +111,8 @@ function buscaProduto(codigo) {
   $.ajax
   ({
       type: 'GET',
-      url: 'produto/' + codigo,
+      url: 'produto?codigo=' + codigo,
+      //url: 'produto/' + codigo,
       success: function (msg)
       {
           var produto = JSON.parse(msg);
@@ -118,6 +124,7 @@ function buscaProduto(codigo) {
               $('#fornecedor').val(produto.fornecedor);
               $('#quantidade').val(produto.quantidade);
               $('#preco').val(produto.preco);
+              $('#arquivo').val(produto.imagem)
               $('#produtoForm').modal('toggle');
           } 
           
@@ -153,7 +160,7 @@ $.makeTableTurmas = function (mydata) {
   tblHeader += "<th>Fornecedor</th>";
   tblHeader += "<th>Quantidade</th>";
   tblHeader += "<th>Preço</th>";
-  tblHeader += "<th></th>";
+  tblHeader += "<th>Imagem</th>";
   tblHeader += "<th></th>";
   tblHeader += "</tr>";
   $(tblHeader).appendTo(table);
