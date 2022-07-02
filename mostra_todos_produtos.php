@@ -119,7 +119,7 @@ include_once "fachada.php";
               });
           });
       });
-</script>
+</script> 
 <!--
 <script>
   $(document).ready(function(){

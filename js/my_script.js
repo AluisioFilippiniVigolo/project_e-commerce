@@ -132,12 +132,11 @@ function buscaProduto(codigo) {
   });
 }
 
-
 function buscaProdutos($) {
   $.ajax
   ({
       type: 'GET',
-      url: 'produto',
+      url: 'produto?palavra=' + $('#search_box').val() + '&inicio=' + $('#page').val()  + '&quantos=' + $('#limit').val(),
       success: function (msg)
       {
           var mydata = eval(msg);

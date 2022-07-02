@@ -23,7 +23,7 @@ switch($request_method)
     }
     else
     {
-        echo $dao->buscaProdutosJSON();
+        echo $dao->buscaProdutosJSON($_GET["palavra"], $_GET["inicio"], $_GET["quantos"]);
         http_response_code(200); // 200 OK
     }
     break;
