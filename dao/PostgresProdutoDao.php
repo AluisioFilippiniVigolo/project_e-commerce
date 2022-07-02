@@ -168,6 +168,8 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
 
   public function buscaTodosPaginado($palavra, $inicio, $quantos) {
 
+    $produtos = array();
+
     $query = "SELECT procod, 
         pronome,
         prodescricao,
@@ -190,7 +192,17 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
     $stmt->bindValue(2, $inicio);
     $stmt->execute();
 
-    return $stmt->fetchAll();
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+      extract($row);
+      $produtos[] = new Produto($procod, 
+        $pronome, 
+        $prodescricao, 
+        $profornecedor, 
+        $proquantidade, 
+        $propreco,
+        $proimagem); 
+    }
+    return $produtos; 
   }
 
   public function contaTodos() {
@@ -237,13 +249,13 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
           $profornecedor, 
           $proquantidade, 
           $propreco,
-          $proimagem); 
+          $proimagem);  
       }
     return $produtos; 
   }
 
-  public function buscaProdutosJSON() {
-    $produtos = $this->buscaTodos();
+  public function buscaProdutosJSON($palavra, $inicio, $quantos) {
+    $produtos = $this->buscaTodosPaginado($palavra, $inicio, $quantos);
     $produtosJSON = array();
     foreach ($produtos as $produto) {
         $produtosJSON[] = $produto->getDadosParaJSON(); 
