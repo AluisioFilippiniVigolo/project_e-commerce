@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Carrinho de compras PHP</tilte>
+    <title>Carrinho de compras PHP</title>
 </head>    
 <body>
     <h2>Carrinho PHP</h2>
@@ -24,7 +24,6 @@
 
     </div><!--carrinho-contaniner-->
 
-
     <?php
      if(isset($_GET['adicionar'])){
         //vamos adicionar ao carrinho
@@ -42,8 +41,6 @@
         }
      }
     ?>
-
-
 
 </body>
 </html>
