@@ -136,13 +136,13 @@ function buscaProdutos($) {
   $.ajax
   ({
       type: 'GET',
-      url: 'produto?palavra=' + $('#search_box').val() + '&inicio=' + $('#page').val()  + '&quantos=' + $('#limit').val(),
+      url: 'produto',
       success: function (msg)
       {
           var mydata = eval(msg);
           var quantos = Object.keys(mydata).length;
           if(quantos>0) {
-              var table = $.makeTableTurmas(mydata);
+              var table = $.makeTableProdutos(mydata);
               $("#div_produtos").html("<h1>Produtos</h1>");
               $("#div_produtos").append(table);
           } 
@@ -150,7 +150,7 @@ function buscaProdutos($) {
   });
 }
 
-$.makeTableTurmas = function (mydata) {
+$.makeTableProdutos = function (mydata) {
   var table = $('<table class="table table-striped table-advance table-hover">');
   var tblHeader = "<tbody><tr>";
   tblHeader += "<th>Código</th>";

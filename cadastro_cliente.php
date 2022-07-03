@@ -32,6 +32,7 @@
             <div class="input-group">
                 <input type="text" name="telefone" placeholder="Telefone" class="form-control">
             </div>
+            <br>
             <div class="input-group">
                 <input type="text" name="login" placeholder="Login" class="form-control">
             </div>

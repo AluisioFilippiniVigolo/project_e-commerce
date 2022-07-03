@@ -3,9 +3,9 @@
 <html lang=pt-br>
 
 <head>
-	<meta charset="UTF-8">
-	
-	<link rel="stylesheet" href="css/bootstrap.min.css" />
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="css/custom2.css">
   <link rel="stylesheet" href="css/custom.css" />
   <link rel="stylesheet" href="css/my_css.css" />
@@ -18,68 +18,34 @@
 
 <body>
 
-<header>
-  <ul class="nav justify-content-end" id="nav_superior">
-    <!-- <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Active</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled">Disabled</a>
-    </li> -->
-    <!-- <li id="login_info">
-      <?php	
+  <header>
+    <ul class="nav justify-content-end" id="nav_superior">
+      <?php
       include_once "comum.php";
-      
-      if ( is_session_started() === FALSE ) {
+
+      if (is_session_started() === FALSE) {
         session_start();
-      }	
-      
-      if(isset($_SESSION["nome_usuario"])) {
-        // Informações de login
-        echo "<span> " . $_SESSION["nome_usuario"];		
-        echo "<a href='executa_logout.php'> Logout </a></span>";
-      } else {
-        echo "<span><a href='login.php'> Efetuar Login </a></span>";
       }
-      ?>	
-    </li> -->
-  </ul>
 
-  <div class="menu_principal">
-    <div id="logotipo">
-      <img id="img_logotipo" src="images/logotipo.png"/>	
-    </div>
-
-    <div id="busca_produtos">
-      <form action="mostra_todos_produtos.php" method="GET">
-        <input type="text" name="busca" id="barra_busca_produtos" placeholder="Buscar" class="form-control position_input">
-        <button type="submit" id="btn_buscar">Buscar</button>
-      </form>
-      <li id="login_info" style="margin-left: 90%; margin-top:-34px">
-      <?php	
-      include_once "comum.php";
-      
-      if ( is_session_started() === FALSE ) {
-        session_start();
-      }	
-      
-      if(isset($_SESSION["nome_usuario"])) {
-        // Informações de login
-        echo "<span> " . $_SESSION["nome_usuario"];		
+      if (isset($_SESSION["nome_usuario"])) {
+        echo "<span> " . $_SESSION["nome_usuario"];
         echo "<a href='executa_logout.php'> Logout </a></span>";
       } else {
         echo "<span><a href='login.php'>  Login </a></span>";
       }
-      ?>	
-    </li>
-    </div>
-  </div>
 
-</header>
+      echo "</ul>";
+      echo "<div class='menu_principal'>";
+      echo "<div id='logotipo'>";
+      echo "<img id='img_logotipo' src='images/logotipo.png'/>";
+      echo "</div>";
 
+      if (isset($_SESSION["nome_usuario"]) == false or strcasecmp($_SESSION["nome_usuario"], "Admin") != 0) {
+        echo "<div id='busca_produtos'>";
+        echo "<input type='text' name='busca' id='barra_busca_produtos' placeholder='Buscar' class='form-control position_input'>";
+        echo "<button type='submit' id='btn_buscar' class='btn_buscar'>Buscar</button>";
+        echo "<a href='carrinho.php'><img id='img_carrinho' src='images/carrinho.png'/></a>";
+        echo "</div>";
+      }
+      ?>
+  </header>

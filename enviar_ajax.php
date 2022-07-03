@@ -10,5 +10,4 @@ copy($nome_temporario,"./uploads/$nome_real");
 
 //echo '<input type="text" name="imagem" >';
 // NÂO REDIRECIONA NADA
-//echo "Arquivo " . $nome_real ." armazenado";
 ?>

@@ -27,14 +27,17 @@ var_dump($cliente);
 
 $problemas = FALSE;
 if($cliente) {
-    // Agora verifica a senha 
     if(!strcmp($senha, $cliente->getSenha())) 
     { 
-        // TUDO OK! Agora, passa os dados para a sessão e redireciona o usuário 
         $_SESSION["id_usuario"]= $cliente->getCodigo(); 
         $_SESSION["nome_usuario"] = stripslashes($cliente->getNome()); 
-        //$_SESSION["permissao"]= $dados["postar"]; 
-        header("Location: index.php"); 
+
+        if (strcasecmp($_SESSION["nome_usuario"], "Admin") == 0) {
+          header("Location: index_admin.php"); 
+        }
+        else {
+          header("Location: index.php");
+        }
         exit; 
     } else {
         $problemas = TRUE; 
@@ -47,4 +50,3 @@ if($problemas==TRUE) {
     header("Location: index.php"); 
     exit; 
 }
-?>
