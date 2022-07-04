@@ -25,6 +25,7 @@ $output = '
     <th>Descrição</th>
     <th>Preço</th>
     <th>Imagem</th>
+    <th>Adicionar/Remover</th>
   </tr>
 ';
 if ($total_data > 0) {
@@ -38,8 +39,7 @@ if ($total_data > 0) {
       <td>
         <a href="adicionar_carrinho.php?codigo=' . $row['procod'] . '" class="btn btn-primary">
         <span class="glyphicon glyphicon-shopping-cart"></span>
-        </a>
-        <a href="cart.php?codigo=' . $row['procod'] . '" class="btn btn-danger">
+        <a href="remove_item_carrinho.php?codigo=' . $row["procod"] . '" class="btn btn-danger">
         <span class="glyphicon glyphicon-minus"></span>
         </a>
       </td>

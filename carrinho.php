@@ -5,7 +5,6 @@ $page_title = "Carrinho de compras PHP";
 
 include_once "layout_header.php";
 include_once "fachada.php";
-
 ?>
 
 <script type="text/javascript" src="js/jquery-3.6.0.js">
@@ -18,16 +17,17 @@ include_once "fachada.php";
 </script>
 
 <section>
-
   <?php
-  $codigos = explode(";", $_SESSION["carrinho"]);
-  if (isset($codigos) == true and count($codigos) > 0) {
+  if ($_SESSION["carrinho"] != '') {
+    echo "<h3>Meu carrinho</h3>";
+    $codigos = explode(";", $_SESSION["carrinho"]);
     $output = '
       <table class="table table-striped table-bordered" id="lista_carrinho"> 
         <tr>
           <th>Nome</th>
           <th>Descrição</th>
           <th>Preço</th>
+          <th>Excluir</th>
         </tr>
       ';
     $total_compra = 0;
@@ -42,9 +42,9 @@ include_once "fachada.php";
           <td>' . $produto->getDescricao() . '</td>
           <td>' . $produto->getPreco() . '</td>
           <td>     
-            <a class="btn btn-danger">
+            <a href="remove_item_carrinho.php?codigo=' . $produto->getCodigo() . '" class="btn btn-danger">
             <span class="glyphicon glyphicon-minus"></span>
-          </a> 
+            </a>
           </td>
         </tr>
         ';
@@ -53,9 +53,11 @@ include_once "fachada.php";
     $output .= "</table>";
 
     echo $output;
+    echo "<h4>Total do pedido: R$ " . $total_compra . "</h4>";
+  } else {
+    echo "<h3>Seu carrinho está vazio :(</h3>";
   }
 
-  echo "<h4>Total do pedido: R$ " . $total_compra . "</h4>";
   ?>
 
 </section>
