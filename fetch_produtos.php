@@ -95,7 +95,7 @@ if ($total_links > 4) {
 } else {
   for ($count = 1; $count <= $total_links; $count++) {
     $page_array[] = $count;
-  }
+  } 
 }
 
 for ($count = 0; $count < count($page_array); $count++) {

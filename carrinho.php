@@ -55,7 +55,7 @@ include_once "fachada.php";
     $output .= 'Total do pedido: R$ ' . $total_compra . '</table>';
 
     echo $output;
-    echo "<a type='submit' id='btn_pedido' href='pedido.php?codigo=" . $link_codigos . "' class='btn btn-success glyphicon glyphicon-shopping-cart'> Comprar</a>";
+    echo "<a type='submit' id='btn_pedido' href='pedido.php' class='btn btn-success glyphicon glyphicon-shopping-cart'> Comprar</a>";
   } else {
     echo "<h3>Seu carrinho está vazio :(</h3>";
   }

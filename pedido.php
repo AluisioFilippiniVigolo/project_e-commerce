@@ -1,35 +1,32 @@
 <?php
-include "verifica.php";
+  include_once "fachada.php";
+  include_once "layout_header.php";
+  $usuario = $_SESSION["id_usuario"];
+  $carrinho = $_SESSION["carrinho"];
 
-$page_title = "Pedido";
+  $daoProduto = $factory->getProdutoDao(); 
+  $daoCliente = $factory->getClienteDao();
+  $daoPedido = $factory->getPedidoDao();
+  $daoItemPedido = $factory->getItemPedidoDao();
 
-include_once "layout_header.php";
-include_once "fachada.php";
-?>
+  $cliente = null;
+  $pedido = null;
 
-<script type="text/javascript" src="js/jquery-3.6.0.js">
-</script>
+  //$cliente = $daoCliente->buscaPorCodigo($usuario);
+  $data_pedido = date('d/m/Y');
+  $data_entrega = date('d/m/Y');
+  $situacao = "Pedido recebido";
+  $pedido = new Pedido(null, $usuario, $data_pedido, $data_entrega, $situacao);
+  $daoPedido->insere($pedido);
 
-<script type="text/javascript" src="js/bootstrap.min.js">
-</script>
-
-<script type="text/javascript" src="js/my_script.js">
-</script>
-
-<section>
-  <?php
-  $codigos = explode(";", $_GET['codigo']);
+  $codigos = explode(";", $carrinho);
   foreach ($codigos as $codigo) {
-    if ($codigo != '') {
-      $dao = $factory->getProdutoDao();
-      $produto = $dao->buscaPorCodigo($codigo);
+    if($codigo != '') {
+      $produto = null;
+      $produto = $daoProduto->buscaPorCodigo($codigo);
+      $item_pedido = new ItemPedido($codigo, $pedido->getNumero(), $quantidade, $produto->getPreco());
+      $daoItemPedido->insere($item_pedido);
     }
   }
 
-?>
-</section>
-
-
-<?php
-include_once "layout_footer.php";
 ?>
