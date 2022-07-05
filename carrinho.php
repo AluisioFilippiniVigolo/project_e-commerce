@@ -25,17 +25,19 @@ include_once "fachada.php";
       <table class="table table-striped table-bordered" id="lista_carrinho"> 
         <tr>
           <th>Nome</th>
-          <th>Descrição</th>
+          <th>Descrição</th> 
           <th>Preço</th>
           <th>Excluir</th>
         </tr>
       ';
     $total_compra = 0;
+    $link_codigos = '';
     foreach ($codigos as $codigo) {
       if ($codigo != '') {
         $dao = $factory->getProdutoDao();
         $produto = $dao->buscaPorCodigo($codigo);
         $total_compra += $produto->getPreco();
+        $link_codigos = $link_codigos . $produto->getCodigo() . ";";
         $output .= '
         <tr>
           <td>' . $produto->getNome() . '</td>
@@ -50,10 +52,10 @@ include_once "fachada.php";
         ';
       }
     }
-    $output .= "</table>";
+    $output .= 'Total do pedido: R$ ' . $total_compra . '</table>';
 
     echo $output;
-    echo "<h4>Total do pedido: R$ " . $total_compra . "</h4>";
+    echo "<a type='submit' id='btn_pedido' href='pedido.php?codigo=" . $link_codigos . "' class='btn btn-success glyphicon glyphicon-shopping-cart'> Comprar</a>";
   } else {
     echo "<h3>Seu carrinho está vazio :(</h3>";
   }
@@ -61,6 +63,7 @@ include_once "fachada.php";
   ?>
 
 </section>
+
 
 <?php
 include_once "layout_footer.php";

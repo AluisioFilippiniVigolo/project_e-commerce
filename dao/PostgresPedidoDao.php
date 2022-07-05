@@ -31,7 +31,7 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
     if($stmt->execute()){
         return true;
     }else{
-        return false;
+        return false; 
     }
 
   }

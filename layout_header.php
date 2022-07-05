@@ -36,14 +36,15 @@
 
       echo "</ul>";
       echo "<div class='menu_principal'>";
-      echo "<div id='logotipo'>";
+      echo "<div id='busca_produtos'>";
       echo "<img id='img_logotipo' src='images/logotipo.png'/>";
       echo "</div>";
 
       if (isset($_SESSION["nome_usuario"]) == false or strcasecmp($_SESSION["nome_usuario"], "Admin") != 0) {
-        echo "<div id='busca_produtos'>";
         echo "<input type='text' name='busca' id='barra_busca_produtos' placeholder='Buscar' class='form-control position_input'>";
-        echo "<button type='submit' id='btn_buscar' class='btn_buscar'>Buscar</button>";
+        echo "<a class='btn_buscar'>";
+        echo "<span id='icone_busca'class='glyphicon glyphicon-search'></span>";
+        echo "</a>"; 
         echo "<a href='carrinho.php'><img id='img_carrinho' src='images/carrinho.png'/></a>";
         echo "</div>";
       }

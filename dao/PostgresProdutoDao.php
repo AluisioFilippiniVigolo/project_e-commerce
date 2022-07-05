@@ -168,7 +168,7 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
 
   public function buscaTodosPaginado($palavra, $inicio, $quantos) {
     
-    $query = "SELECT procod, 
+    $query = "SELECT procod,  
         pronome,
         prodescricao,
         profornecedor,

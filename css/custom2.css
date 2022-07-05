@@ -42,6 +42,7 @@ footer {
 
 div.menu_principal {
   height: 100px;
+  margin-top: 2%;
 }
 
 #nav_superior {
@@ -65,22 +66,26 @@ div.col-md-4 {
   border-color: red;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 #logotipo {
   display: inline-grid;
-  width: 22%;
+  width: 23%;
 }
 
 #busca_produtos {
   display: inline;
   margin: auto;
-  width: 60%;
+  width: 50%;
 }
 
 #img_logotipo {
   margin: auto;
-  width: 80%;
+  width: 15%;
+  margin-left: 5%;
+  margin-right: 2%;
 }
 
 #btn_buscar {
@@ -91,8 +96,17 @@ div.col-md-4 {
   width: 50%;
 }
 
-#btn_buscar {
+.btn_buscar {
   display: inline;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: red;
+  border-color: red;
+  padding: 9px;
+}
+
+#icone_busca {
+  color: white; 
 }
 
 #img_carrinho {
@@ -107,6 +121,11 @@ div.col-md-4 {
 
 #lista_produtos {
   width: 90%;
+}
+
+#btn_pedido {
+  display: inline;
+  margin-left: 50%;
 }
 
 div.input-group {

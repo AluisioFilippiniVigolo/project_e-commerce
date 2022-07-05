@@ -5,4 +5,5 @@
     //$_SESSION["produto"] = $_GET['quantidade'];
   }
   header("Location: index.php");
+  exit;
 ?>
