@@ -208,5 +208,33 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
   
 }
 
+public function buscaPorCliente($codigo) {
+      
+  $pedido = array();
+
+  $query = "SELECT pednumero, 
+      pedcliente,
+      peddatapedido,
+      peddataentrega,
+      pedsituacao  
+    FROM 
+      " . $this->table_name . "
+    WHERE
+      pedcliente = ?";
+
+  $stmt = $this->conn->prepare( $query );
+  $stmt->bindValue(1, $codigo);
+  $stmt->execute();
+
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    extract($row);
+    $pedido[] = new Pedido($pednumero, 
+      $pedcliente, 
+      $peddatapedido, 
+      $peddataentrega, 
+      $pedsituacao); 
+  }
+  return $pedido;
 }
-?>
+
+}

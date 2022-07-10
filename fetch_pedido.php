@@ -11,7 +11,7 @@ $daoPedido = $factory->getPedidoDao();
 $daoItemPedido = $factory->getItemPedidoDao();
 $daoProduto = $factory->getProdutoDao();
 
-$pedidos = $daoPedido->buscaTodos();
+$pedidos = $daoPedido->buscaPorCliente($_SESSION["id_usuario"]);
 
 $output = "<h3>Meus pedidos</h3>";
 

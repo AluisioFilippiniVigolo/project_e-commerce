@@ -10,5 +10,6 @@ interface PedidoDao {
     public function buscaTodos();
     public function contaTodos();
     public function buscaNumeroUltimoPedido();
+    public function buscaPorCliente($codigo);
 }
 ?>
