@@ -26,6 +26,7 @@
       $item_pedido = null;
       $quantidade = 1;
       $produto = $daoProduto->buscaPorCodigo($codigo);
+      $daoProduto->baixaEstoque($produto, $quantidade);
       $item_pedido = new ItemPedido($codigo, $numero_pedido, $quantidade, $produto->getPreco());
       $daoItemPedido->insere($item_pedido);
     }

@@ -12,5 +12,6 @@ interface ProdutoDao {
     public function contaTodos();
     public function buscaProdutosJSON();
     public function buscaProdutoJSON($codigo);
+    public function baixaEstoque($produto, $quantidade);
 }
 ?>

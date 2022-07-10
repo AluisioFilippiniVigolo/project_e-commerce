@@ -124,7 +124,7 @@ div.col-md-4 {
 }
 
 #lista_pedidos {
-  width: 90%;
+  width: 80%;
 }
 
 #btn_pedido {
@@ -146,6 +146,7 @@ img.card-img-top {
 
 div.card {
   display: inline-grid;
+  margin: 2%;
 }
 
 a.btn_comprar {
@@ -153,11 +154,39 @@ a.btn_comprar {
 }
 
 a.btn_cancelar_pedido {
-  width: 15%;
+  width: 75pt;
   margin-bottom: 5px;
   margin-left: 2%;
 }
 
 h4.dados_pedido {
   display: inline;
+}
+
+#link_pedidos {
+  margin-left: 5%;
+}
+
+img.imagem_pedidos {
+  width: 50pt;
+}
+
+.tabela_produto {
+  width:40%;
+}
+
+.tabela_quantidade {
+  width:10%;
+}
+
+.tabela_preco {
+  width:10%;
+}
+
+.tabela_imagem {
+  width:20%;
+}
+
+.quantidade_carrinho {
+  width: 40pt;
 }

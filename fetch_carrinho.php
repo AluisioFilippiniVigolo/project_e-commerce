@@ -16,6 +16,7 @@ if ($_SESSION["carrinho"] != '') {
         <th>Nome</th>
         <th>Descrição</th> 
         <th>Preço</th>
+        <th>Quantidade</th>
         <th>Excluir</th>
       </tr>
     ';
@@ -32,6 +33,7 @@ if ($_SESSION["carrinho"] != '') {
         <td>' . $produto->getNome() . '</td>
         <td>' . $produto->getDescricao() . '</td>
         <td>' . $produto->getPreco() . '</td>
+        <td><input class="quantidade_carrinho" type="number"></input></td>
         <td>     
           <a href="remove_item_carrinho.php?codigo=' . $produto->getCodigo() . '" class="btn btn-danger">
           <span class="glyphicon glyphicon-minus"></span>

@@ -30,9 +30,11 @@ foreach($pedidos as $pedido) {
   $output .= '
   <table class="table table-striped table-bordered" id="lista_pedidos"> 
     <tr>
-      <th>Produto</th>
-      <th>Quantidade</th> 
-      <th>Preço</th>
+      <th class="tabela_produto">Produto</th>
+      <th class="tabela_quantidade">Quantidade</th> 
+      <th class="tabela_preco">Preço</th>
+      <th class="tabela_imagem">Imagem</th>
+      <th class="tabela_estoque">Estoque Atual</th>
     </tr>
   ';
 
@@ -47,6 +49,8 @@ foreach($pedidos as $pedido) {
     <td>' . $produto->getNome() . '</td>
     <td>' . $itemPedido->getQuantidade() . '</td>
     <td>' . $itemPedido->getPreco() . '</td>
+    <td><img class="imagem_pedidos" src="uploads/' . $produto->getImagem() . '"></td>
+    <td>' . $produto->getQuantidade() . ' peças</td>
   </tr>
   ';
   }

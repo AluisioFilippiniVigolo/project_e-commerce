@@ -13,7 +13,7 @@ include_once "fachada.php";
 
 <script type="text/javascript" src="js/my_script.js"></script>
 
-<section  id="carrinho"></section>
+<section id="carrinho"></section>
 
 <script>
   $(document).ready(function() {

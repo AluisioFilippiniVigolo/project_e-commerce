@@ -3,11 +3,13 @@
 include_once('ProdutoDao.php');
 include_once('PostgresDao.php');
 
-class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
+class PostgresProdutoDao extends PostgresDao implements ProdutoDao
+{
 
   private $table_name = 'TPRODUTO ';
-  
-  public function insere($produto) {
+
+  public function insere($produto)
+  {
 
     $query = "INSERT INTO " . $this->table_name . "
       (pronome, 
@@ -35,17 +37,17 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
 
     var_dump($stmt);
 
-    if($stmt->execute()){
-        return true;
-    }else{
-        return false;
+    if ($stmt->execute()) {
+      return true;
+    } else {
+      return false;
     }
-
   }
 
-  public function removePorCodigo($codigo) {
-    $query = "DELETE FROM " . $this->table_name . 
-    " WHERE procod = :codigo";
+  public function removePorCodigo($codigo)
+  {
+    $query = "DELETE FROM " . $this->table_name .
+      " WHERE procod = :codigo";
 
     $stmt = $this->conn->prepare($query);
 
@@ -53,19 +55,20 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
     $stmt->bindValue(':codigo', $codigo);
 
     // execute the query
-    if($stmt->execute()){
-        return true;
-    }    
+    if ($stmt->execute()) {
+      return true;
+    }
 
     return false;
   }
 
   public function removePorProduto($produto)
   {
-    return $this->removePorCodigo($produto->getCodigo()); 
+    return $this->removePorCodigo($produto->getCodigo());
   }
 
-  public function altera($produto) {
+  public function altera($produto)
+  {
 
     $query = "UPDATE " . $this->table_name . "
     SET
@@ -88,15 +91,54 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
     $stmt->bindValue(":imagem", $produto->getImagem());
 
     // execute the query
-    if($stmt->execute()){
-        return true;
-    }    
+    if ($stmt->execute()) {
+      return true;
+    }
 
     return false;
   }
 
-  public function buscaPorCodigo($codigo) {
-      
+  public function baixaEstoque($produto, $quantidade)
+  {
+
+    $quantidade = $produto->getQuantidade() - $quantidade;
+
+    if ($quantidade < 0) {
+      $quantidade = 0;
+      return false;
+    } else {
+
+      $query = "UPDATE " . $this->table_name . "
+      SET
+        pronome = :nome,
+        prodescricao = :descricao,
+        profornecedor = :fornecedor,
+        proquantidade = :quantidade,
+        propreco = :preco,
+        proimagem = :imagem
+      WHERE procod = :codigo";
+
+      $stmt = $this->conn->prepare($query);
+
+      $stmt->bindValue(":codigo", $produto->getCodigo());
+      $stmt->bindValue(":nome", $produto->getNome());
+      $stmt->bindValue(":descricao", $produto->getDescricao());
+      $stmt->bindValue(":fornecedor", $produto->getFornecedor());
+      $stmt->bindValue(":quantidade", $quantidade);
+      $stmt->bindValue(":preco", $produto->getPreco());
+      $stmt->bindValue(":imagem", $produto->getImagem());
+
+      if ($stmt->execute()) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  public function buscaPorCodigo($codigo)
+  {
+
     $produto = null;
 
     $query = "SELECT procod, 
@@ -112,28 +154,31 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
         procod = ?
       LIMIT
         1 OFFSET 0";
-  
-    $stmt = $this->conn->prepare( $query );
+
+    $stmt = $this->conn->prepare($query);
     $stmt->bindValue(1, $codigo);
     $stmt->execute();
-  
+
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    if($row) {
-        $produto = new Produto($row['procod'], 
-        $row['pronome'], 
-        $row['prodescricao'], 
+    if ($row) {
+      $produto = new Produto(
+        $row['procod'],
+        $row['pronome'],
+        $row['prodescricao'],
         $row['profornecedor'],
-        $row['proquantidade'], 
+        $row['proquantidade'],
         $row['propreco'],
-        $row['proimagem']);
-    } 
-  
+        $row['proimagem']
+      );
+    }
+
     return $produto;
   }
 
-  public function buscaPorNome($palavra) {
-      
-    $produtos = array();        
+  public function buscaPorNome($palavra)
+  {
+
+    $produtos = array();
 
     $query = "SELECT procod, 
         pronome,
@@ -146,28 +191,31 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
         " . $this->table_name . "
       WHERE
         pronome like ? ORDER BY procod ASC";
-  
+
     $stmt = $this->conn->prepare($query);
     $parametro = "%" . $palavra . "%";
     $stmt->bindValue(1, $parametro);
     $stmt->execute();
-  
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        extract($row);
-        $produtos[] = new Produto($procod, 
-          $pronome, 
-          $prodescricao, 
-          $profornecedor, 
-          $proquantidade, 
-          $propreco,
-          $proimagem); 
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      extract($row);
+      $produtos[] = new Produto(
+        $procod,
+        $pronome,
+        $prodescricao,
+        $profornecedor,
+        $proquantidade,
+        $propreco,
+        $proimagem
+      );
     }
 
     return $produtos;
   }
 
-  public function buscaTodosPaginado($palavra, $inicio, $quantos) {
-    
+  public function buscaTodosPaginado($palavra, $inicio, $quantos)
+  {
+
     $query = "SELECT procod,  
         pronome,
         prodescricao,
@@ -178,7 +226,7 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
     FROM 
       " . $this->table_name;
 
-    if($palavra != '') {
+    if ($palavra != '') {
       $query .= " WHERE UPPER(pronome) LIKE '%" . str_replace(' ', '%', strtoupper($palavra)) . "%'";
     }
 
@@ -193,25 +241,27 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
     return $stmt->fetchAll();
   }
 
-  public function contaTodos() {
+  public function contaTodos()
+  {
 
     $quantos = 0;
 
-    $query = "SELECT COUNT(*) AS contagem FROM " . 
-                $this->table_name;
-  
-    $stmt = $this->conn->prepare( $query );
+    $query = "SELECT COUNT(*) AS contagem FROM " .
+      $this->table_name;
+
+    $stmt = $this->conn->prepare($query);
     $stmt->execute();
 
-    if ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        extract($row);
-        $quantos = $contagem;
+    if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      extract($row);
+      $quantos = $contagem;
     }
-    
+
     return $quantos;
   }
 
-  public function buscaTodos() {
+  public function buscaTodos()
+  {
 
     $produtos = array();
 
@@ -225,40 +275,42 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
       FROM 
           " . $this->table_name . "
           ORDER BY procod ASC";
-  
-    $stmt = $this->conn->prepare( $query );
+
+    $stmt = $this->conn->prepare($query);
     $stmt->execute();
 
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        extract($row);
-        $produtos[] = new Produto($procod, 
-          $pronome, 
-          $prodescricao, 
-          $profornecedor, 
-          $proquantidade, 
-          $propreco,
-          $proimagem);  
-      }
-    return $produtos; 
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      extract($row);
+      $produtos[] = new Produto(
+        $procod,
+        $pronome,
+        $prodescricao,
+        $profornecedor,
+        $proquantidade,
+        $propreco,
+        $proimagem
+      );
+    }
+    return $produtos;
   }
 
-  public function buscaProdutosJSON() {
+  public function buscaProdutosJSON()
+  {
     $produtos = $this->buscaTodos();
     $produtosJSON = array();
     foreach ($produtos as $produto) {
-        $produtosJSON[] = $produto->getDadosParaJSON(); 
+      $produtosJSON[] = $produto->getDadosParaJSON();
     }
-    return stripslashes(json_encode($produtosJSON,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    return stripslashes(json_encode($produtosJSON, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
   }
 
-  public function buscaProdutoJSON($codigo) {
-      $produto = $this->buscaPorCodigo($codigo);
-      if($produto!=null) {
-          return stripslashes(json_encode($produto->getDadosParaJSON(),JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-      } else {
-          return null;
-      }
+  public function buscaProdutoJSON($codigo)
+  {
+    $produto = $this->buscaPorCodigo($codigo);
+    if ($produto != null) {
+      return stripslashes(json_encode($produto->getDadosParaJSON(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    } else {
+      return null;
+    }
   }
-
 }
-?>

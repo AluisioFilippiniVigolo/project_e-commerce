@@ -79,10 +79,11 @@ include_once "fachada.php";
           <label data-error="wrong" data-success="right" for="preco">Preço</label>
           <input type="text" id="preco" class="form-control validate">
         </div>
-        </br>
+      
         <div class="md-form mb-5">
-          <input type="file" id="arquivo" name="arquivo" class="form-control" multiple />
           <div id="caminho"></div>
+          <br>
+          <input type="file" id="arquivo" name="arquivo" class="form-control" multiple />
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">

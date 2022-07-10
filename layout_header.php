@@ -30,6 +30,7 @@
       if (isset($_SESSION["nome_usuario"])) {
         echo "<span> " . $_SESSION["nome_usuario"];
         echo "<a href='executa_logout.php'> Logout </a></span>";
+        echo "<a id='link_pedidos' href='pedido.php'>Meus pedidos</a>";
       } else {
         echo "<span><a href='login.php'>  Login </a></span>";
       }
