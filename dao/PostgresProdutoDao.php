@@ -50,7 +50,7 @@ class PostgresProdutoDao extends PostgresDao implements ProdutoDao {
     $stmt = $this->conn->prepare($query);
 
     // bind parameters
-    $stmt->bindParam(':codigo', $codigo);
+    $stmt->bindValue(':codigo', $codigo);
 
     // execute the query
     if($stmt->execute()){

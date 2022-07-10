@@ -30,12 +30,10 @@ class PostgresFornecedorDao extends PostgresDao implements FornecedorDao {
         :cep, 
         :cidade, 
         :estado,
-        :telefone, 
+        :telefone,
         :email)";
 
     $stmt = $this->conn->prepare($query);
-
-   var_dump($fornecedor);
 
     $stmt->bindValue(":nome", $fornecedor->getNome());
     $stmt->bindValue(":descricao", $fornecedor->getDescricao());

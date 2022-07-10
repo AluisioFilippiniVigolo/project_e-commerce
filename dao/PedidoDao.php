@@ -9,5 +9,6 @@ interface PedidoDao {
     public function buscaPorNome($palavra);
     public function buscaTodos();
     public function contaTodos();
+    public function buscaNumeroUltimoPedido();
 }
 ?>

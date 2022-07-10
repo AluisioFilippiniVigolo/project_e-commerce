@@ -28,7 +28,7 @@ function insereProduto() {
       fornecedor : $('#fornecedor').val(),
       quantidade : $('#quantidade').val(),
       preco : $('#preco').val(),
-      imagem : $('#arquivo').val()
+      imagem : $('#imagem').val()
   }
 
   $.ajax
@@ -46,7 +46,7 @@ function insereProduto() {
           $('#fornecedor').val("");
           $('#quantidade').val("");
           $('#preco').val("");
-          $('#arquivo').val("");
+          $('#imagem').val("");
           buscaProdutos($);
       }
   });
@@ -56,7 +56,7 @@ function insereProduto() {
 
 
 function alteraProduto() {
-  
+
   var produto = {
     codigo : $('#codigo').val(),
     nome : $('#nome').val(),
@@ -64,7 +64,7 @@ function alteraProduto() {
     fornecedor : $('#fornecedor').val(),
     quantidade : $('#quantidade').val(),
     preco : $('#preco').val(),
-    imagem : $('#arquivo').val()
+    imagem : $('#imagem').val()
   }
 
   $.ajax
@@ -85,6 +85,7 @@ function alteraProduto() {
         $('#fornecedor').val("");
         $('#quantidade').val("");
         $('#preco').val("");
+        $('#imagem').val("");
         buscaProdutos($);
       }
   });
@@ -124,7 +125,7 @@ function buscaProduto(codigo) {
               $('#fornecedor').val(produto.fornecedor);
               $('#quantidade').val(produto.quantidade);
               $('#preco').val(produto.preco);
-              $('#arquivo').val(produto.imagem)
+              $('#imagem').val(produto.imagem);
               $('#produtoForm').modal('toggle');
           } 
           

@@ -15,36 +15,26 @@ if ($_POST['page'] > 1) {
 $dao = $factory->getProdutoDao();
 $produtos = $dao->buscaTodosPaginado($_POST['query'], $start, $limit);
 
-$total_data = count($produtos);
+$total_data = count($produtos); 
 
 $output = '
-<label>Quantidade de Registros - ' . $total_data . '</label>
-<table class="table table-striped table-bordered" id="lista_produtos">
-  <tr>
-    <th>Nome</th>
-    <th>Descrição</th>
-    <th>Preço</th>
-    <th>Imagem</th>
-    <th>Adicionar/Remover</th>
-  </tr>
-';
+<label>Quantidade de Registros - ' . $total_data . '</label><br>';
+
 if ($total_data > 0) {
   foreach ($produtos as $row) {
+
     $output .= '
-    <tr>
-      <td>' . $row["pronome"] . '</td>
-      <td>' . $row["prodescricao"] . '</td>
-      <td>' . $row["propreco"] . '</td>
-      <td>' . $row["proimagem"] . '</td>
-      <td>
-        <a href="adicionar_carrinho.php?codigo=' . $row['procod'] . '" class="btn btn-primary">
+    <div class="card" style="width: 18rem;">
+      <img src="uploads/' . $row["proimagem"] . '" class="card-img-top" alt="' . $row["prodescricao"] . '">
+      <div class="card-body">
+        <h5 class="card-title">' . $row["pronome"] . '</h5>
+        <h4>R$ ' . $row["propreco"] . '</h4>
+        <a class="btn btn-primary btn_comprar" href="adicionar_carrinho.php?codigo=' . $row["procod"] . '">
         <span class="glyphicon glyphicon-shopping-cart"></span>
-        <a href="remove_item_carrinho.php?codigo=' . $row["procod"] . '" class="btn btn-danger">
-        <span class="glyphicon glyphicon-minus"></span>
         </a>
-      </td>
-    </tr>
-    ';
+      </div>
+    </div>'; 
+
   }
 } else {
   $output .= '

@@ -20,6 +20,10 @@ else {
   
 </div>
 
+<div class="table-responsive" id="codigo">
+  
+</div>
+
 </br>
 
 <script>

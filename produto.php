@@ -35,7 +35,7 @@ switch($request_method)
     $quantidade = $data["quantidade"];
     $fornecedor = $data["fornecedor"];
     $preco = $data["preco"];
-    $imagem = $data["arquivo"];
+    $imagem = $data["imagem"];
     $produto = new Produto(null, $nome, $descricao, $fornecedor, $quantidade, $preco, $imagem);
     $dao->insere($produto);
     http_response_code(201); // 201 Created
@@ -52,7 +52,7 @@ switch($request_method)
             $produto->setDescricao($data["descricao"]);
             $produto->setQuantidade($data["quantidade"]);
             $produto->setPreco($data["preco"]);
-            $produto->setImagem($data["arquivo"]);
+            $produto->setImagem($data["imagem"]);
             $dao->altera($produto);
             http_response_code(200); // 200 OK
        } else {

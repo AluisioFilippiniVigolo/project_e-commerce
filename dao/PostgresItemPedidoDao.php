@@ -10,20 +10,21 @@ class PostgresItemPedidoDao extends PostgresDao implements ItemPedidoDao {
   public function insere($itemPedido) {
 
     $query = "INSERT INTO " . $this->table_name . "
-      (ITEPRODUTO,
-      ITEPEDIDO, 
-      ITEQUANTIDADE,
-      ITEPRECO (:produto, 
+      (Iteproduto,
+      itepedido, 
+      itequantidade,
+      itepreco)
+      VALUES (:produto, 
         :pedido, 
         :quantidade, 
         :preco)";
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(":produto", $itemPedido->getProduto());
-    $stmt->bindParam(":pedido", $itemPedido->getPedido());
-    $stmt->bindParam(":quantidade", $itemPedido->getQuantidade());
-    $stmt->bindParam(":preco", $itemPedido->getPreco());
+    $stmt->bindValue(":produto", $itemPedido->getProduto());
+    $stmt->bindValue(":pedido", $itemPedido->getPedido());
+    $stmt->bindValue(":quantidade", $itemPedido->getQuantidade());
+    $stmt->bindValue(":preco", $itemPedido->getPreco());
     if($stmt->execute()){
         return true;
     }else{
@@ -34,12 +35,12 @@ class PostgresItemPedidoDao extends PostgresDao implements ItemPedidoDao {
 
   public function removePorPedido($pedido) {
     $query = "DELETE FROM " . $this->table_name . 
-    " WHERE ITEPEDIDO = :pedido";
+    " WHERE itepedido = :pedido";
 
     $stmt = $this->conn->prepare($query);
 
     // bind parameters
-    $stmt->bindParam(':pedido', $pedido);
+    $stmt->bindValue(':pedido', $pedido);
 
     // execute the query
     if($stmt->execute()){
@@ -52,17 +53,17 @@ class PostgresItemPedidoDao extends PostgresDao implements ItemPedidoDao {
   public function altera($itemPedido) {
 
     $query = "UPDATE " . $this->table_name . "
-    SET ITEPRODUTO = :produto, 
-      ITEPEDIDO = :pedido,
-      ITEQUANTIDADE = :quantidade,
-      ITEPRECO = :preco";
+    SET iteproduto = :produto, 
+      itepedido = :pedido,
+      itequantidade = :quantidade,
+      itepreco = :preco";
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(":produto", $itemPedido->getProduto());
-    $stmt->bindParam(":pedido", $itemPedido->getPedido());
-    $stmt->bindParam(":quantidade", $itemPedido->getQuantidade());
-    $stmt->bindParam(":preco", $itemPedido->getPreco());
+    $stmt->bindValue(":produto", $itemPedido->getProduto());
+    $stmt->bindValue(":pedido", $itemPedido->getPedido());
+    $stmt->bindValue(":quantidade", $itemPedido->getQuantidade());
+    $stmt->bindValue(":preco", $itemPedido->getPreco());
 
     // execute the query
     if($stmt->execute()){
@@ -76,31 +77,59 @@ class PostgresItemPedidoDao extends PostgresDao implements ItemPedidoDao {
       
     $itemPedido = null;
 
-    $query = "SELECT (ITEPRODUTO, 
-        ITEPEDIDO,
-        ITEQUANTIDADE,
-        ITEPRECO)  
+    $query = "SELECT (iteproduto, 
+        itepedido,
+        itequantidade,
+        itepreco)  
       FROM 
         " . $this->table_name . "
       WHERE
-        ITEPEDIDO = ? AND ITEPRODUTO = ?
+        itepedido = ? AND iteproduto = ?
       LIMIT
         1 OFFSET 0";
   
     $stmt = $this->conn->prepare( $query );
-    $stmt->bindParam(1, $pedido);
-    $stmt->bindParam(2, $codigo);
+    $stmt->bindValue(1, $pedido);
+    $stmt->bindValue(2, $codigo);
     $stmt->execute();
   
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if($row) {
-        $itemPedido = new ItemPedido($row['ITEPRODUTO'], 
-        $row['ITEPEDIDO'], 
-        $row['ITEQUANTIDADE'], 
-        $row['ITEPRECO']);
+        $itemPedido = new ItemPedido($row['iteproduto'], 
+        $row['itepedido'], 
+        $row['itequantidade'], 
+        $row['itepreco']);
     } 
   
     return $itemPedido;
+  }
+
+  public function buscaTodosPorNumeroPedido($pedido) { 
+      
+    $itensPedido = null;
+
+    $query = "SELECT iteproduto, 
+        itepedido,
+        itequantidade,
+        itepreco 
+      FROM 
+        " . $this->table_name . "
+      WHERE
+        itepedido = ?
+      ";
+  
+    $stmt = $this->conn->prepare( $query );
+    $stmt->bindValue(1, $pedido);
+    $stmt->execute();
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        extract($row);
+        $itensPedido[] = new ItemPedido($iteproduto, 
+          $itepedido, 
+          $itequantidade, 
+          $itepreco); 
+      }
+    return $itensPedido;
   }
 
   public function contaTodos() {
@@ -125,10 +154,10 @@ class PostgresItemPedidoDao extends PostgresDao implements ItemPedidoDao {
 
     $itemPedidos = array();
 
-    $query = "SELECT (ITEPRODUTO, 
-        ITEPEDIDO,
-        ITEQUANTIDADE,
-        ITEPRECO)   
+    $query = "SELECT (iteproduto, 
+        itepedido,
+        itequantidade,
+        itepreco)   
       FROM 
           " . $this->table_name . "
           ORDER BY id ASC";

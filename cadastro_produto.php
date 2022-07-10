@@ -2,6 +2,7 @@
   $page_title = 'Cadastro de Produto';
   include_once "layout_header.php";
   include_once "layout_footer.php";
+  include_once "enviar_ajax.php";
 ?>
 
 <!DOCTYPE html>
@@ -47,8 +48,6 @@
             <br>
             <div class="input-group">
                 <input type="file" id="arquivo" name="arquivo" class="form-control" multiple />
-                <button id="upload" class="btn btn-success">Upload</button>
-                <p id="msg"></p>
             </div>
             <br>
             <div class="text-center">
@@ -64,11 +63,11 @@
 
       <script type="text/javascript">
       $(document).ready(function (e) {
-          $('#Arquivo').on('change', function () {
-              var file_data = $('#Arquivo').prop('files')[0];
+          $('arquivo').on('change', function () {
+              var file_data = $('#arquivo').prop('files')[0];
               //alert(file_data);
               var form_data = new FormData();
-              form_data.append('Arquivo', file_data);
+              form_data.append('arquivo', file_data);
               $.ajax({
                   url: 'http://localhost/project_e-commerce/enviar_ajax.php', // point to server-side controller method
                   dataType: 'text', // what to expect back from the server

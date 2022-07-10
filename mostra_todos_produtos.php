@@ -8,15 +8,16 @@ $page_title = "Listagem de Produtos";
 include_once "layout_header.php";
 include_once "fachada.php";
 
+
 ?>
+
+<script type="text/javascript" src="js/my_script.js">
+</script>
 
 <script type="text/javascript" src="js/jquery-3.6.0.js">
 </script>
 
 <script type="text/javascript" src="js/bootstrap.min.js">
-</script>
-
-<script type="text/javascript" src="js/my_script.js">
 </script>
 
 <section>
@@ -81,12 +82,11 @@ include_once "fachada.php";
         </br>
         <div class="md-form mb-5">
           <input type="file" id="arquivo" name="arquivo" class="form-control" multiple />
-          <p id="msg"></p>
+          <div id="caminho"></div>
         </div>
-
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-primary" onClick="salvaProduto();">Salvar</button>
+        <button class="btn btn-primary btn_salvar_produto" onClick="salvaProduto();">Salvar</button>
       </div>
     </div>
   </div>
@@ -111,10 +111,10 @@ include_once "fachada.php";
         data: form_data,
         type: 'post',
         success: function(response) {
-          $('#msg').html(response);
+          $('#caminho').html(response);
         },
         error: function(response) {
-          $('#msg').html(response);
+          $('#caminho').html(response);
         }
       });
     });
@@ -148,6 +148,11 @@ include_once "fachada.php";
     var query = $('#search_box').val();
     load_data(1, query);
   });
+
+  $(document).on('click', '#btn_salvar_produto', function() {
+    buscaProdutos($);
+  });
+
 </script>
 
 <?php

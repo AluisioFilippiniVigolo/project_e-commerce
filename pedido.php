@@ -1,32 +1,37 @@
 <?php
-  include_once "fachada.php";
-  include_once "layout_header.php";
-  $usuario = $_SESSION["id_usuario"];
-  $carrinho = $_SESSION["carrinho"];
+include "verifica.php";
 
-  $daoProduto = $factory->getProdutoDao(); 
-  $daoCliente = $factory->getClienteDao();
-  $daoPedido = $factory->getPedidoDao();
-  $daoItemPedido = $factory->getItemPedidoDao();
+$page_title = "Carrinho de compras PHP";
 
-  $cliente = null;
-  $pedido = null;
+include_once "layout_header.php";
+include_once "fachada.php";
+?>
 
-  //$cliente = $daoCliente->buscaPorCodigo($usuario);
-  $data_pedido = date('d/m/Y');
-  $data_entrega = date('d/m/Y');
-  $situacao = "Pedido recebido";
-  $pedido = new Pedido(null, $usuario, $data_pedido, $data_entrega, $situacao);
-  $daoPedido->insere($pedido);
+<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
 
-  $codigos = explode(";", $carrinho);
-  foreach ($codigos as $codigo) {
-    if($codigo != '') {
-      $produto = null;
-      $produto = $daoProduto->buscaPorCodigo($codigo);
-      $item_pedido = new ItemPedido($codigo, $pedido->getNumero(), $quantidade, $produto->getPreco());
-      $daoItemPedido->insere($item_pedido);
-    }
-  }
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
+<script type="text/javascript" src="js/my_script.js"></script>
+
+<section  id="pedido"></section>
+
+<script>
+  $(document).ready(function() {
+
+        load_data();
+
+        function load_data() {
+          $.ajax({
+            url: "fetch_pedido.php",
+            method: "POST",
+            success: function(data) {
+              $('#pedido').html(data);
+            }
+          });
+        }
+      });
+</script>
+
+<?php
+include_once "layout_footer.php";
 ?>

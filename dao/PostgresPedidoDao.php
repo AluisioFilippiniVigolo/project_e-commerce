@@ -10,24 +10,21 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
   public function insere($pedido) {
 
     $query = "INSERT INTO " . $this->table_name . "
-      (PEDNUMERO,
-      PEDCLIENTE, 
-      PEDDATAPEDIDO,
-      PEDDATAENTREGA,
-      PEDSITUACAO)
-      VALUES (:numero, 
-        :cliente, 
+      (pedcliente, 
+      peddatapedido,
+      peddataentrega,
+      pedsituacao)
+      VALUES (:cliente, 
         :dataPedido, 
         :dataEntrega, 
         :situacao)";
 
     $stmt = $this->conn->prepare($query);
 
-    $stmt->bindParam(":numero", $pedido->getNumero());
-    $stmt->bindParam(":cliente", $pedido->getCliente());
-    $stmt->bindParam(":dataPedido", $pedido->getDataPedido());
-    $stmt->bindParam(":dataEntrega", $pedido->getDataEntrega());
-    $stmt->bindParam(":situacao", $pedido->getSituacao());
+    $stmt->bindValue(":cliente", $pedido->getCliente());
+    $stmt->bindValue(":dataPedido", $pedido->getDataPedido());
+    $stmt->bindValue(":dataEntrega", $pedido->getDataEntrega());
+    $stmt->bindValue(":situacao", $pedido->getSituacao());
     if($stmt->execute()){
         return true;
     }else{
@@ -38,7 +35,7 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
 
   public function removePorNumeroPedido($numero) {
     $query = "DELETE FROM " . $this->table_name . 
-    " WHERE PEDNUMERO = :numero";
+    " WHERE pednumero = :numero";
 
     $stmt = $this->conn->prepare($query);
 
@@ -61,11 +58,11 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
   public function altera($pedido) {
 
     $query = "UPDATE " . $this->table_name . "
-    SET PEDNUMERO = :numero, 
-      PEDCLIENTE = :cliente,
-      PEDDATAPEDIDO = :dataPedido,
-      PEDDATAENTREGA = :dataEntrega,
-      PEDSITUACAO = :situacao";
+    SET pednumero = :numero, 
+      pedcliente = :cliente,
+      peddatapedido = :dataPedido,
+      peddataentrega = :dataEntrega,
+      pedsituacao = :situacao";
 
     $stmt = $this->conn->prepare($query);
 
@@ -87,15 +84,15 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
       
     $pedido = null;
 
-    $query = "SELECT (PEDNUMERO, 
-        PEDCLIENTE,
-        PEDDATAPEDIDO,
-        PEDDATAENTREGA,
-        PEDSITUACAO)  
+    $query = "SELECT (pednumero, 
+        pedcliente,
+        peddatapedido,
+        peddataentrega,
+        pedsituacao)  
       FROM 
         " . $this->table_name . "
       WHERE
-        PEDNUMERO = ?
+        pednumero = ?
       LIMIT
         1 OFFSET 0";
   
@@ -105,11 +102,11 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
   
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if($row) {
-        $pedido = new Pedido($row['PEDNUMERO'], 
-        $row['PEDCLIENTE'], 
-        $row['PEDDATAPEDIDO'], 
-        $row['PEDDATAENTREGA'],
-        $row['PEDSITUACAO']);
+        $pedido = new Pedido($row['pednumero'], 
+        $row['pedcliente'], 
+        $row['peddatapedido'], 
+        $row['peddataentrega'],
+        $row['pedsituacao']);
     } 
   
     return $pedido;
@@ -119,15 +116,15 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
       
     $produto = array();        
 
-    $query = "SELECT (PEDNUMERO, 
-        PEDCLIENTE,
-        PEDDATAPEDIDO,
-        PEDDATAENTREGA,
-        PEDSITUACAO)  
+    $query = "SELECT (pednumero, 
+        pedcliente,
+        peddatapedido,
+        peddataentrega,
+        pedsituacao)  
       FROM 
         " . $this->table_name . "
       WHERE
-        nome like ? ORDER BY PEDNUMERO ASC";
+        nome like ? ORDER BY pednumero ASC";
   
     $stmt = $this->conn->prepare($query);
     $parametro = "%" . $palavra . "%";
@@ -164,32 +161,52 @@ class PostgresPedidoDao extends PostgresDao implements PedidoDao {
     return $quantos;
   }
 
-  public function buscaTodos() {
+  public function buscaTodos() { 
 
     $pedido = array();
 
-    $query = "SELECT (PEDNUMERO, 
-        PEDCLIENTE,
-        PEDDATAPEDIDO,
-        PEDDATAENTREGA,
-        PEDSITUACAO)   
+    $query = "SELECT pednumero, 
+        pedcliente,
+        peddatapedido,
+        peddataentrega,
+        pedsituacao  
       FROM 
           " . $this->table_name . "
-          ORDER BY PEDNUMERO ASC";
+          ORDER BY pednumero ASC";
   
     $stmt = $this->conn->prepare( $query );
     $stmt->execute();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $pedido[] = new Pedido($numero, 
-          $cliente, 
-          $dataPedido, 
-          $dataEntrega, 
-          $situacao); 
+        $pedido[] = new Pedido($pednumero, 
+          $pedcliente, 
+          $peddatapedido, 
+          $peddataentrega, 
+          $pedsituacao); 
       }
     return $pedido;
   }
+
+  public function buscaNumeroUltimoPedido() {
+
+    $query = "SELECT (pednumero) AS codigo  
+      FROM 
+          " . $this->table_name . "
+          ORDER BY pednumero DESC
+          LIMIT 1 OFFSET 0";
+  
+    $stmt = $this->conn->prepare( $query );
+    $stmt->execute();
+
+    if ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+      extract($row);
+      $registro = $codigo;
+  }
+  
+  return $registro;
+  
+}
 
 }
 ?>

@@ -123,11 +123,41 @@ div.col-md-4 {
   width: 90%;
 }
 
+#lista_pedidos {
+  width: 90%;
+}
+
 #btn_pedido {
   display: inline;
-  margin-left: 50%;
+  margin-left: 32%;
+}
+
+#btn_continuar_compra {
+  display: inline;
 }
 
 div.input-group {
   width: 100%;
+}
+
+img.card-img-top {
+  width: 100%;
+}
+
+div.card {
+  display: inline-grid;
+}
+
+a.btn_comprar {
+  width: 100%;
+}
+
+a.btn_cancelar_pedido {
+  width: 15%;
+  margin-bottom: 5px;
+  margin-left: 2%;
+}
+
+h4.dados_pedido {
+  display: inline;
 }

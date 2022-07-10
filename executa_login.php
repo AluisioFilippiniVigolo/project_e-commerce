@@ -30,7 +30,8 @@ if($cliente) {
     if(!strcmp($senha, $cliente->getSenha())) 
     { 
         $_SESSION["id_usuario"]= $cliente->getCodigo(); 
-        $_SESSION["nome_usuario"] = stripslashes($cliente->getNome()); 
+        $_SESSION["nome_usuario"] = stripslashes($cliente->getNome());
+        $_SESSION["carrinho"] = ''; 
 
         if (strcasecmp($_SESSION["nome_usuario"], "Admin") == 0) {
           header("Location: index_admin.php"); 

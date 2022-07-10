@@ -1,9 +1,15 @@
 <?php
-  include_once("layout_header.php");
-  if (isset($_SESSION["id_usuario"])) {
-    $_SESSION["carrinho"] = $_SESSION["carrinho"] . $_GET['codigo'] . ";";
-    //$_SESSION["produto"] = $_GET['quantidade'];
-  }
-  header("Location: index.php");
-  exit;
+include_once "comum.php";
+
+if (is_session_started() === FALSE) {
+  session_start();
+}
+
+if (isset($_SESSION['nome_usuario'])) {
+  $_SESSION['carrinho'] = $_SESSION['carrinho'] . $_GET['codigo'] . ";";
+}
+
+header("Location: carrinho.php");
+exit;
+
 ?>
